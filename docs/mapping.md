@@ -641,7 +641,7 @@ Map to `tender.procedure.isAccelerated` as a boolean.
         </td>
         <td class="mapping">
 
-Discard. If a notice announces the results for multiple framework agreements, please express your interest in this field by commenting on [this issue](https://github.com/open-contracting/european-union-support/issues/198) or by contacting the [Data Support Team](data@open-contracting.org).
+Discard. If a notice announces the results for multiple framework agreements, please express your interest in this field by commenting on [this issue](https://github.com/open-contracting/european-union-support/issues/198) or by contacting the [Data Support Team](mailto:data@open-contracting.org).
 
 ```xml
 <efac:NoticeResult>
@@ -2555,7 +2555,7 @@ Discard. The notice and sections that were modified can be determined by compari
         </td>
         <td class="mapping">
 
-Discard. If you use groups of lots, please express your interest in this field by commenting on [this issue](https://github.com/open-contracting/european-union-support/issues/197) or by contacting the [Data Support Team](data@open-contracting.org).
+Discard. If you use groups of lots, please express your interest in this field by commenting on [this issue](https://github.com/open-contracting/european-union-support/issues/197) or by contacting the [Data Support Team](mailto:data@open-contracting.org).
 
 ```xml
 <efac:NoticeResult>
@@ -2576,7 +2576,7 @@ Discard. If you use groups of lots, please express your interest in this field b
         </td>
         <td class="mapping">
 
-Discard. If you use groups of lots, please express your interest in this field by commenting on [this issue](https://github.com/open-contracting/european-union-support/issues/197) or by contacting the [Data Support Team](data@open-contracting.org).
+Discard. If you use groups of lots, please express your interest in this field by commenting on [this issue](https://github.com/open-contracting/european-union-support/issues/197) or by contacting the [Data Support Team](mailto:data@open-contracting.org).
 
 ```xml
 <efac:NoticeResult>
