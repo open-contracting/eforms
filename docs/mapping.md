@@ -142,7 +142,7 @@ Map to `tender.legalBasis.id`.
       </tr>
       <tr id="BT-01(f)-Procedure">
         <td class="field break-all">
-            <p><b>BT-01(f)-Procedure</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#otherLegalBasisSection"></a><br>Procedure Legal Basis (NoID Description)</p><p><i>BT-01:</i> The legal basis (e.g. a Union or national legal act) under which the procurement procedure takes place or, in case of prior information notices, under which the procurement procedure(s) will take place.</p>
+            <p><b>BT-01(f)-Procedure</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#otherLegalBasisSection"></a><br>Procedure Legal Basis (NoID Description)</p><p><i>BT-01:</i> The legal basis (e.g. a Union or national legal act) under which the procurement procedure takes place or, in case of prior information notices, under which the procurement procedure(s) will take place.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:TenderingTerms/cac:ProcurementLegislationDocumentReference[cbc:ID/text()='LocalLegalBasis']/cbc:DocumentDescription</span></code>
         </td>
         <td class="mapping">
@@ -377,7 +377,7 @@ See <a href="#BT-09(b)-Procedure">BT-09(b)-Procedure</a>.
       </tr>
       <tr id="BT-09(b)-Procedure">
         <td class="field break-all">
-            <p><b>BT-09(b)-Procedure</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#crossBorderLawSection"></a><br>Cross Border Law Description</p><p><i>BT-09:</i> The applicable law when buyers from different countries procure together within one procurement procedure.</p>
+            <p><b>BT-09(b)-Procedure</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#crossBorderLawSection"></a><br>Cross Border Law Description</p><p><i>BT-09:</i> The applicable law when buyers from different countries procure together within one procurement procedure.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:TenderingTerms/cac:ProcurementLegislationDocumentReference[cbc:ID/text()='CrossBorderLaw']/cbc:DocumentDescription</span></code>
         </td>
         <td class="mapping">
@@ -515,7 +515,7 @@ Map to `tender.procedure.isAccelerated` as a boolean.
       </tr>
       <tr id="BT-109-Lot">
         <td class="field break-all">
-            <p><b>BT-109-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#frameworkAgreementSection"></a><br>Framework Duration Justification</p><p><i>BT-109:</i> The justification for exceptional cases when the duration of framework agreements exceeds the legal limits. </p>
+            <p><b>BT-109-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#frameworkAgreementSection"></a><br>Framework Duration Justification</p><p><i>BT-109:</i> The justification for exceptional cases when the duration of framework agreements exceeds the legal limits. </p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingProcess/cac:FrameworkAgreement/cbc:Justification</span></code>
         </td>
         <td class="mapping">
@@ -636,12 +636,12 @@ Map to `tender.procedure.isAccelerated` as a boolean.
       </tr>
       <tr id="BT-1118-NoticeResult">
         <td class="field break-all">
-            <p><b>BT-1118-NoticeResult</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_notice_aggregated_amounts"></a><br>Notice Framework Approximate Value</p><p><i>BT-1118:</i> The approximate value to be spent within the framework agreement(s) announced in this notice over its/their whole duration, in all lots, including options and renewals, as calculated on the basis of the winner’s tender or winners’ tenders.</p>
+            <p><b>BT-1118-NoticeResult</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_notice_aggregated_amounts"></a><br>Notice Framework Approximate Value</p><p><i>BT-1118:</i> The approximate value to be spent within the framework agreement(s) announced in this notice over its/their whole duration, in all lots, including options and renewals, as calculated on the basis of the winner’s tender or winners’ tenders.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efbc:OverallApproximateFrameworkContractsAmount</span></code>
         </td>
         <td class="mapping">
 
-Discard.
+Discard. If a notice announces the results for multiple framework agreements, please express your interest in this field by commenting on [this issue](https://github.com/open-contracting/european-union-support/issues/198) or by contacting the [Data Support Team](data@open-contracting.org).
 
 ```xml
 <efac:NoticeResult>
@@ -655,7 +655,7 @@ Discard.
       </tr>
       <tr id="BT-113-Lot">
         <td class="field break-all">
-            <p><b>BT-113-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#frameworkAgreementSection"></a><br>Framework Maximum Participants Number</p><p><i>BT-113:</i> The maximum number of participants in the framework agreement.</p>
+            <p><b>BT-113-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#frameworkAgreementSection"></a><br>Framework Maximum Participants Number</p><p><i>BT-113:</i> The maximum number of participants in the framework agreement.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingProcess/cac:FrameworkAgreement/cbc:MaximumOperatorQuantity</span></code>
         </td>
         <td class="mapping">
@@ -773,7 +773,7 @@ Discard.
       </tr>
       <tr id="BT-119-LotResult">
         <td class="field break-all">
-            <p><b>BT-119-LotResult</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Dynamic Purchasing System Termination</p><p><i>BT-119:</i> The dynamic purchasing system is terminated. No further contracts, besides those published in this notice, will be awarded in the dynamic purchasing system. This field can be used even if no contracts are awarded in the contract award notice.</p>
+            <p><b>BT-119-LotResult</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Dynamic Purchasing System Termination</p><p><i>BT-119:</i> The dynamic purchasing system is terminated. No further contracts, besides those published in this notice, will be awarded in the dynamic purchasing system. This field can be used even if no contracts are awarded in the contract award notice.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efbc:DPSTerminationIndicator</span></code>
         </td>
         <td class="mapping">
@@ -812,12 +812,12 @@ If "true", [get the lot for the LotResult](operations.md#get-the-lot-for-a-lotre
       </tr>
       <tr id="BT-120-Lot">
         <td class="field break-all">
-            <p><b>BT-120-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#awardConsequencesSection"></a><br>No Negotiation Necessary</p><p><i>BT-120:</i> The buyer reserves the right to award the contract on the basis of the initial tenders without any further negotiations.</p>
+            <p><b>BT-120-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#awardConsequencesSection"></a><br>No Negotiation Necessary</p><p><i>BT-120:</i> The buyer reserves the right to award the contract on the basis of the initial tenders without any further negotiations.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:AwardingTerms/cbc:NoFurtherNegotiationIndicator</span></code>
         </td>
         <td class="mapping">
 
-[Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot), and set its `.secondStage.noNegotiationNecessary` to `true`.
+[Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot), and map to its `.secondStage.noNegotiationNecessary`.
 
 ```xml
 <cac:ProcurementProjectLot>
@@ -1132,7 +1132,7 @@ Add a `RelatedProcess` object to the `relatedProcesses` array, and set its `.id`
 
 For example, if a first notice for a given procedure has nine related processes, it uses id's "1" through "9". A second notice for the same procedure then uses id's "10" and up, etc.
 
-Map the value of the field to `.identifier`. Set `.scheme` to 'eu-oj'. If the value of `sibling::cbc:ProcessReasonCode` is "irregular" or "unsuitable", add 'unsuccessfulProcess' to the `.relationship` array. If it is "additional", "existing" or "repetition, add 'prior' to the `.relationship` array.
+Map the value of the field to `.identifier`. Set `.scheme` to 'eu-oj'. If the value of `sibling::cbc:ProcessReasonCode` is "irregular" or "unsuitable", add 'unsuccessfulProcess' to the `.relationship` array. If it is "additional", "existing" or "repetition", add 'prior' to the `.relationship` array.
 
 ```xml
 <cac:ProcessJustification>
@@ -2439,6 +2439,25 @@ Map to the document's `.url`, and set its `.documentType` to 'biddingDocuments'
 
 </td>
       </tr>
+      <tr id="BT-1501(c)-Contract">
+        <td class="field break-all">
+            <p><b>BT-1501(c)-Contract</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/contract-modification-notice.html"></a><br>Modified Contract Reference</p><p><i>BT-1501:</i> An identifier of one or more sections within a previous notice within the procedure. The information in the modification section refers to this section or these sections.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:ContractModification/efbc:ModifiedContractIdentifier</span></code>
+        </td>
+        <td class="mapping">
+
+Discard. The notice and sections that were modified can be determined by comparing previous releases with the current release.
+
+```xml
+<efac:ContractModification>
+  <efbc:ModifiedContractIdentifier schemeName="contract">CON-0001</efbc:ModifiedContractIdentifier>
+</efac:ContractModification>
+```
+
+
+
+</td>
+      </tr>
       <tr id="BT-1501(n)-Contract">
         <td class="field break-all">
             <p><b>BT-1501(n)-Contract</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/contract-modification-notice.html"></a><br>Modification Previous Notice Identifier</p><p><i>BT-1501:</i> An identifier of one or more sections within a previous notice within the procedure. The information in the modification section refers to this section or these sections.</p>
@@ -2450,9 +2469,7 @@ Discard. The notice and sections that were modified can be determined by compari
 
 ```xml
 <efac:ContractModification>
-  <efac:Change>
-    <efbc:ChangedSectionIdentifier>LOT-0002</efbc:ChangedSectionIdentifier>
-  </efac:Change>
+  <efbc:ChangedNoticeIdentifier schemeName="notice-id-ref">755db7f6-6aa1-453b-9087-1df5f7725112-02</efbc:ChangedNoticeIdentifier>
 </efac:ContractModification>
 ```
 
@@ -2460,9 +2477,9 @@ Discard. The notice and sections that were modified can be determined by compari
 
 </td>
       </tr>
-      <tr id="BT-1501(s)-Contract">
+      <tr id="BT-1501(p)-Contract">
         <td class="field break-all">
-            <p><b>BT-1501(s)-Contract</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/contract-modification-notice.html"></a><br>Modification Previous Notice Section Identifier</p><p><i>BT-1501:</i> An identifier of one or more sections within a previous notice within the procedure. The information in the modification section refers to this section or these sections.</p>
+            <p><b>BT-1501(p)-Contract</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/contract-modification-notice.html"></a><br>Modified Notice Part Reference</p><p><i>BT-1501:</i> An identifier of one or more sections within a previous notice within the procedure. The information in the modification section refers to this section or these sections.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:ContractModification/efac:Change/efac:ChangedSection/efbc:ChangedSectionIdentifier</span></code>
         </td>
         <td class="mapping">
@@ -2472,7 +2489,9 @@ Discard. The notice and sections that were modified can be determined by compari
 ```xml
 <efac:ContractModification>
   <efac:Change>
-    <efbc:ChangedSectionIdentifier>LOT-0002</efbc:ChangedSectionIdentifier>
+    <efac:ChangedSection>
+      <efbc:ChangedSectionIdentifier>TEN-0002</efbc:ChangedSectionIdentifier>
+    </efac:ChangedSection>
   </efac:Change>
 </efac:ContractModification>
 ```
@@ -2531,12 +2550,12 @@ Discard. The notice and sections that were modified can be determined by compari
       </tr>
       <tr id="BT-156-NoticeResult">
         <td class="field break-all">
-            <p><b>BT-156-NoticeResult</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_notice_aggregated_amounts"></a><br>Group Framework Maximum Value</p><p><i>BT-156:</i> It is the re-calculated maximum value likely to be spent for a group of lots within the procedure. This information can be provided when the maximum value of a group of lots is lower than the sum of values of individual lots (e.g. when the same budget is shared for several lots). The value covers all contracts to be awarded within a framework agreement over its whole duration, including options and renewals. The value is re-calculated on the basis of the winner’s tender or winners’ tenders.</p>
+            <p><b>BT-156-NoticeResult</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_notice_aggregated_amounts"></a><br>Group Framework Maximum Value</p><p><i>BT-156:</i> It is the re-calculated maximum value likely to be spent for a group of lots within the procedure. This information can be provided when the maximum value of a group of lots is lower than the sum of values of individual lots (e.g. when the same budget is shared for several lots). The value covers all contracts to be awarded within a framework agreement over its whole duration, including options and renewals. The value is re-calculated on the basis of the winner’s tender or winners’ tenders.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:GroupFramework/efbc:GroupFrameworkMaximumValueAmount</span></code>
         </td>
         <td class="mapping">
 
-Discard.
+Discard. If you use groups of lots, please express your interest in this field by commenting on [this issue](https://github.com/open-contracting/european-union-support/issues/197) or by contacting the [Data Support Team](data@open-contracting.org).
 
 ```xml
 <efac:NoticeResult>
@@ -2552,12 +2571,12 @@ Discard.
       </tr>
       <tr id="BT-1561-NoticeResult">
         <td class="field break-all">
-            <p><b>BT-1561-NoticeResult</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_notice_aggregated_amounts"></a><br>Group Framework Re-estimated Value</p><p><i>BT-1561:</i> The value likely to be spent, within a framework agreement, for a group of lots. This information can be provided when the value likely to be spent for a group of lots is lower than the sum of values likely to be spent for individual lots (e.g. when the same budget is shared for several lots). The value covers all contracts to be awarded within a framework agreement over its whole duration, including options and renewals. The re-estimated value is the value likely to be spent, as re-estimated on the basis of the winner’s tender or winners’ tenders.</p>
+            <p><b>BT-1561-NoticeResult</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_notice_aggregated_amounts"></a><br>Group Framework Re-estimated Value</p><p><i>BT-1561:</i> The value likely to be spent, within a framework agreement, for a group of lots. This information can be provided when the value likely to be spent for a group of lots is lower than the sum of values likely to be spent for individual lots (e.g. when the same budget is shared for several lots). The value covers all contracts to be awarded within a framework agreement over its whole duration, including options and renewals. The re-estimated value is the value likely to be spent, as re-estimated on the basis of the winner’s tender or winners’ tenders.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:GroupFramework/efbc:GroupFrameworkReestimatedValueAmount</span></code>
         </td>
         <td class="mapping">
 
-Discard.
+Discard. If you use groups of lots, please express your interest in this field by commenting on [this issue](https://github.com/open-contracting/european-union-support/issues/197) or by contacting the [Data Support Team](data@open-contracting.org).
 
 ```xml
 <efac:NoticeResult>
@@ -3071,7 +3090,7 @@ Map the value of this field to the award's `.valueCalculationMethod`.
         </td>
         <td class="mapping">
 
-[Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot). Look up the code's label in the [authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/communication-justification) and map it to the lot's `.submissionTerms.nonElectronicSubmissionRationale`.
+[Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot). Look up the code's label in the [authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/communication-justification) and map it to the lot's `.submissionTerms.nonElectronicSubmission.rationale`.
 
 ```xml
 <cac:ProcurementProjectLot>
@@ -3091,7 +3110,9 @@ Map the value of this field to the award's `.valueCalculationMethod`.
       {
         "id": "LOT-0001",
         "submissionTerms": {
-          "nonElectronicSubmissionRationale": "Inclusion of a physical model"
+          "nonElectronicSubmission": {
+            "rationale": "Inclusion of a physical model"
+          }
         }
       }
     ]
@@ -3108,15 +3129,14 @@ Map the value of this field to the award's `.valueCalculationMethod`.
         </td>
         <td class="mapping">
 
-[Get the bid for a LotTender](operations.md#get-the-bid-for-a-lottender).
-If the value of the field is `1A0` (Kosovo), add 'XK' to the bid's `.countriesOfOrigin` array. Otherwise, look up the equivalent ISO 3166-1 alpha-2 code in the [authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/country), and add it to the bid's `.countriesOfOrigin` array.
+[Get the bid for a LotTender](operations.md#get-the-bid-for-a-lottender), look up the equivalent ISO 3166-1 alpha-2 code in the [authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/country), and add it to the bid's `.countriesOfOrigin` array.
 
 ```xml
 <efac:NoticeResult>
   <efac:LotTender>
     <cbc:ID schemeName="tender">TEN-0001</cbc:ID>
     <efac:Origin>
-      <efbc:AreaCode listName="eforms-country">ITA</efbc:AreaCode>
+      <efbc:AreaCode listName="country">ITA</efbc:AreaCode>
     </efac:Origin>
     <efac:TenderLot>
       <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
@@ -3147,12 +3167,12 @@ If the value of the field is `1A0` (Kosovo), add 'XK' to the bid's `.countriesOf
       </tr>
       <tr id="BT-193-Tender">
         <td class="field break-all">
-            <p><b>BT-193-Tender</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#lotTenderSection"></a><br>Tender Variant</p><p><i>BT-193:</i> The tender is a variant.</p>
+            <p><b>BT-193-Tender</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#lotTenderSection"></a><br>Tender Variant</p><p><i>BT-193:</i> The tender is a variant.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotTender/efbc:TenderVariantIndicator</span></code>
         </td>
         <td class="mapping">
 
-[Get the bid for a LotTender](operations.md#get-the-bid-for-a-lottender), and set the bid's `.variant` to `true`.
+[Get the bid for a LotTender](operations.md#get-the-bid-for-a-lottender), and map to the bid's `.variant`.
 
 ```xml
 <efac:NoticeResult>
@@ -11006,7 +11026,7 @@ Map to `tender.title`
       </tr>
       <tr id="BT-22-Lot">
         <td class="field break-all">
-            <p><b>BT-22-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#objectSection"></a><br>Internal Identifier</p><p><i>BT-22:</i> The internal identifier used for files regarding the procurement procedure or lot before a procedure identifier is given (e.g. coming from the buyer's document management system or procurement planning system). </p>
+            <p><b>BT-22-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#objectSection"></a><br>Internal Identifier</p><p><i>BT-22:</i> The internal identifier used for files regarding the procurement procedure or lot before a procedure identifier is given (e.g. coming from the buyer's document management system or procurement planning system). </p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:ProcurementProject/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -11363,7 +11383,7 @@ Map to `tender.description`.
       </tr>
       <tr id="BT-26(a)-Lot">
         <td class="field break-all">
-            <p><b>BT-26(a)-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#classificationSection"></a><br>Classification Type (e.g. CPV)</p><p><i>BT-26:</i> The type of classification describing the purchase (e.g. the CPV).</p>
+            <p><b>BT-26(a)-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#classificationSection"></a><br>Classification Type (e.g. CPV)</p><p><i>BT-26:</i> The type of classification describing the purchase (e.g. the CPV).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:ProcurementProject/cac:AdditionalCommodityClassification/cbc:ItemClassificationCode/@listName</span></code>
         </td>
         <td class="mapping">
@@ -11407,7 +11427,7 @@ Capitalize the value of `cbc:ItemClassificationCode[@listName]` and map to the c
       </tr>
       <tr id="BT-26(a)-Part">
         <td class="field break-all">
-            <p><b>BT-26(a)-Part</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#classificationSection"></a><br>Classification Type (e.g. CPV)</p><p><i>BT-26:</i> The type of classification describing the purchase (e.g. the CPV).</p>
+            <p><b>BT-26(a)-Part</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#classificationSection"></a><br>Classification Type (e.g. CPV)</p><p><i>BT-26:</i> The type of classification describing the purchase (e.g. the CPV).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Part']/cac:ProcurementProject/cac:AdditionalCommodityClassification/cbc:ItemClassificationCode/@listName</span></code>
         </td>
         <td class="mapping">
@@ -11445,7 +11465,7 @@ This field maps to the same objects as created for BT-263-Part. If no `Item` obj
       </tr>
       <tr id="BT-26(a)-Procedure">
         <td class="field break-all">
-            <p><b>BT-26(a)-Procedure</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#classificationSection"></a><br>Classification Type (e.g. CPV)</p><p><i>BT-26:</i> The type of classification describing the purchase (e.g. the CPV).</p>
+            <p><b>BT-26(a)-Procedure</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#classificationSection"></a><br>Classification Type (e.g. CPV)</p><p><i>BT-26:</i> The type of classification describing the purchase (e.g. the CPV).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProject/cac:AdditionalCommodityClassification/cbc:ItemClassificationCode/@listName</span></code>
         </td>
         <td class="mapping">
@@ -12211,7 +12231,7 @@ Map to the release's `description`
       </tr>
       <tr id="BT-31-Procedure">
         <td class="field break-all">
-            <p><b>BT-31-Procedure</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#maxLotsSection"></a><br>Lots Max Allowed</p><p><i>BT-31:</i> The maximum number of lots for which one tenderer can submit tenders.</p>
+            <p><b>BT-31-Procedure</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#maxLotsSection"></a><br>Lots Max Allowed</p><p><i>BT-31:</i> The maximum number of lots for which one tenderer can submit tenders.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:TenderingTerms/cac:LotDistribution/cbc:MaximumLotsSubmittedNumeric</span></code>
         </td>
         <td class="mapping">
@@ -12367,7 +12387,7 @@ Map to `tender.lotDetails.maximumLotsBidPerSupplier`
       </tr>
       <tr id="BT-33-Procedure">
         <td class="field break-all">
-            <p><b>BT-33-Procedure</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#maxLotsSection"></a><br>Lots Max Awarded</p><p><i>BT-33:</i> The maximum number of lots for which contract(s) can be awarded to one tenderer.</p>
+            <p><b>BT-33-Procedure</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#maxLotsSection"></a><br>Lots Max Awarded</p><p><i>BT-33:</i> The maximum number of lots for which contract(s) can be awarded to one tenderer.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:TenderingTerms/cac:LotDistribution/cbc:MaximumLotsAwardedNumeric</span></code>
         </td>
         <td class="mapping">
@@ -12423,7 +12443,7 @@ If there is a `LotGroup` in `tender.lotGroups` whose `.id` is equal to the value
       </tr>
       <tr id="BT-36-Lot">
         <td class="field break-all">
-            <p><b>BT-36-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#plannedPeriodSection"></a><br>Duration Period</p><p><i>BT-36:</i> The (estimated) period from the start to the end of the contract, framework agreement, dynamic purchasing system or qualification system. This shall include any options and renewals.</p>
+            <p><b>BT-36-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#plannedPeriodSection"></a><br>Duration Period</p><p><i>BT-36:</i> The (estimated) period from the start to the end of the contract, framework agreement, dynamic purchasing system or qualification system. This shall include any options and renewals.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:ProcurementProject/cac:PlannedPeriod/cbc:DurationMeasure</span></code>
         </td>
         <td class="mapping">
@@ -12493,7 +12513,7 @@ If `@unitCode` is set to "MONTH", multiply by 30. If `@unitCode` is set to "YEAR
       </tr>
       <tr id="BT-40-Lot">
         <td class="field break-all">
-            <p><b>BT-40-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Second Stage Invite</p><p><i>BT-40:</i> The criteria (or criterion) will (only) be used to select the candidates to be invited for the second stage of the procedure (if a maximum number of candidates was set).</p>
+            <p><b>BT-40-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Second Stage Invite</p><p><i>BT-40:</i> The criteria (or criterion) will (only) be used to select the candidates to be invited for the second stage of the procedure (if a maximum number of candidates was set).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:SelectionCriteria/efbc:SecondStageIndicator</span></code>
         </td>
         <td class="mapping">
@@ -12502,7 +12522,7 @@ If `cbc:CalculationExpressionCode[@listName="usage"]` is not set to "used", disc
 
 - [Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot).
 - For each `efac:SelectionCriteria`, add or update a corresponding `SelectionCriterion` object in the lot's `.selectionCriteria.criteria`.
-- Set the criterion's `.forReduction` to `true`.
+- Map to the criterion's `.forReduction`.
 
 ```xml
 <cac:ProcurementProjectLot>
@@ -12817,7 +12837,7 @@ For each `cac:Prize`, add or update the corresponding `Prize` object in the lot'
       </tr>
       <tr id="BT-50-Lot">
         <td class="field break-all">
-            <p><b>BT-50-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#maxCandidatesSection"></a><br>Minimum Candidates</p><p><i>BT-50:</i> The minimum number of candidates to be invited for the second stage of the procedure.</p>
+            <p><b>BT-50-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#maxCandidatesSection"></a><br>Minimum Candidates</p><p><i>BT-50:</i> The minimum number of candidates to be invited for the second stage of the procedure.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingProcess/cac:EconomicOperatorShortList/cbc:MinimumQuantity</span></code>
         </td>
         <td class="mapping">
@@ -13587,7 +13607,7 @@ For each `cac:Prize`, add or update the corresponding `Prize` object in the lot'
       </tr>
       <tr id="BT-507-Organization-Company">
         <td class="field break-all">
-            <p><b>BT-507-Organization-Company</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Organisation Country Subdivision</p><p><i>BT-507:</i> The location according to the common classification of territorial units for statistics (NUTS) of the organisation's physical address. The NUTS3 classification code shall be used.</p>
+            <p><b>BT-507-Organization-Company</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Organisation Country Subdivision</p><p><i>BT-507:</i> The location according to the common classification of territorial units for statistics (NUTS) of the organisation's physical address. The NUTS3 classification code shall be used.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:Organization/efac:Company/cac:PostalAddress/cbc:CountrySubentityCode</span></code>
         </td>
         <td class="mapping">
@@ -13626,7 +13646,7 @@ For each `cac:Prize`, add or update the corresponding `Prize` object in the lot'
       </tr>
       <tr id="BT-507-Organization-TouchPoint">
         <td class="field break-all">
-            <p><b>BT-507-Organization-TouchPoint</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Country Subdivision</p><p><i>BT-507:</i> The location according to the common classification of territorial units for statistics (NUTS) of the organisation's physical address. The NUTS3 classification code shall be used.</p>
+            <p><b>BT-507-Organization-TouchPoint</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Country Subdivision</p><p><i>BT-507:</i> The location according to the common classification of territorial units for statistics (NUTS) of the organisation's physical address. The NUTS3 classification code shall be used.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:Organization/efac:TouchPoint/cac:PostalAddress/cbc:CountrySubentityCode</span></code>
         </td>
         <td class="mapping">
@@ -13947,7 +13967,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </tr>
       <tr id="BT-51-Lot">
         <td class="field break-all">
-            <p><b>BT-51-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#maxCandidatesSection"></a><br>Maximum Candidates Number</p><p><i>BT-51:</i> The maximum number of candidates to be invited for the second stage of the procedure.</p>
+            <p><b>BT-51-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#maxCandidatesSection"></a><br>Maximum Candidates Number</p><p><i>BT-51:</i> The maximum number of candidates to be invited for the second stage of the procedure.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingProcess/cac:EconomicOperatorShortList/cbc:MaximumQuantity</span></code>
         </td>
         <td class="mapping">
@@ -14785,7 +14805,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </tr>
       <tr id="BT-512-Organization-Company">
         <td class="field break-all">
-            <p><b>BT-512-Organization-Company</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Organisation Post Code</p><p><i>BT-512:</i> The post code of the organisation's physical address.</p>
+            <p><b>BT-512-Organization-Company</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Organisation Post Code</p><p><i>BT-512:</i> The post code of the organisation's physical address.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:Organization/efac:Company/cac:PostalAddress/cbc:PostalZone</span></code>
         </td>
         <td class="mapping">
@@ -14824,7 +14844,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </tr>
       <tr id="BT-512-Organization-TouchPoint">
         <td class="field break-all">
-            <p><b>BT-512-Organization-TouchPoint</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Post Code</p><p><i>BT-512:</i> The post code of the organisation's physical address.</p>
+            <p><b>BT-512-Organization-TouchPoint</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Post Code</p><p><i>BT-512:</i> The post code of the organisation's physical address.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:Organization/efac:TouchPoint/cac:PostalAddress/cbc:PostalZone</span></code>
         </td>
         <td class="mapping">
@@ -15067,7 +15087,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </tr>
       <tr id="BT-513-Organization-TouchPoint">
         <td class="field break-all">
-            <p><b>BT-513-Organization-TouchPoint</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>City</p><p><i>BT-513:</i> The name of the locality (city, town, or village) of the organisation's physical address.</p>
+            <p><b>BT-513-Organization-TouchPoint</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>City</p><p><i>BT-513:</i> The name of the locality (city, town, or village) of the organisation's physical address.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:Organization/efac:TouchPoint/cac:PostalAddress/cbc:CityName</span></code>
         </td>
         <td class="mapping">
@@ -15287,7 +15307,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </cac:PartyIdentification>
       <cac:PostalAddress>
         <cac:Country>
-          <cbc:IdentificationCode listName="eforms-country">GBR</cbc:IdentificationCode>
+          <cbc:IdentificationCode listName="country">GBR</cbc:IdentificationCode>
         </cac:Country>
       </cac:PostalAddress>
     </efac:Company>
@@ -15333,7 +15353,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </cac:PartyIdentification>
       <cac:PostalAddress>
         <cac:Country>
-          <cbc:IdentificationCode listName="eforms-country">GBR</cbc:IdentificationCode>
+          <cbc:IdentificationCode listName="country">GBR</cbc:IdentificationCode>
         </cac:Country>
       </cac:PostalAddress>
     </efac:TouchPoint>
@@ -15382,7 +15402,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
     <cbc:ID schemeName="ubo">UBO-0001</cbc:ID>
     <cac:ResidenceAddress>
       <cac:Country>
-        <cbc:IdentificationCode listName="eforms-country">GBR</cbc:IdentificationCode>
+        <cbc:IdentificationCode listName="country">GBR</cbc:IdentificationCode>
       </cac:Country>
     </cac:ResidenceAddress>
   </efac:UltimateBeneficialOwner>
@@ -15428,7 +15448,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
     <cac:RealizedLocation>
       <cac:Address>
         <cac:Country>
-          <cbc:IdentificationCode listName="eforms-country">GBR</cbc:IdentificationCode>
+          <cbc:IdentificationCode listName="country">GBR</cbc:IdentificationCode>
         </cac:Country>
       </cac:Address>
     </cac:RealizedLocation>
@@ -15470,7 +15490,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
 <cac:RealizedLocation>
   <cac:Address>
     <cac:Country>
-      <cbc:IdentificationCode listName="eforms-country">GBR</cbc:IdentificationCode>
+      <cbc:IdentificationCode listName="country">GBR</cbc:IdentificationCode>
     </cac:Country>
   </cac:Address>
 </cac:RealizedLocation>
@@ -15504,7 +15524,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
 <cac:RealizedLocation>
   <cac:Address>
     <cac:Country>
-      <cbc:IdentificationCode listName="eforms-country">GBR</cbc:IdentificationCode>
+      <cbc:IdentificationCode listName="country">GBR</cbc:IdentificationCode>
     </cac:Country>
   </cac:Address>
 </cac:RealizedLocation>
@@ -15526,12 +15546,12 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </tr>
       <tr id="BT-52-Lot">
         <td class="field break-all">
-            <p><b>BT-52-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#successiveReductionSection"></a><br>Successive Reduction Indicator (Lot)</p><p><i>BT-52:</i> The procedure will take place in successive stages. In each stage, some participants may be eliminated.</p>
+            <p><b>BT-52-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#successiveReductionSection"></a><br>Successive Reduction Indicator (Lot)</p><p><i>BT-52:</i> The procedure will take place in successive stages. In each stage, some participants may be eliminated.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingProcess/cbc:CandidateReductionConstraintIndicator</span></code>
         </td>
         <td class="mapping">
 
-[Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot), and set its `secondStage.successiveReduction` to `true`.
+[Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot), and map to its `secondStage.successiveReduction`.
 
 ```xml
 <cac:ProcurementProjectLot>
@@ -15652,7 +15672,7 @@ Add to `tender.additionalProcurementCategories` array.
       </tr>
       <tr id="BT-536-Lot">
         <td class="field break-all">
-            <p><b>BT-536-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#plannedPeriodSection"></a><br>Duration Start Date</p><p><i>BT-536:</i> The (estimated) date when the contract, framework agreement, dynamic purchasing system or qualification system will start.</p>
+            <p><b>BT-536-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#plannedPeriodSection"></a><br>Duration Start Date</p><p><i>BT-536:</i> The (estimated) date when the contract, framework agreement, dynamic purchasing system or qualification system will start.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:ProcurementProject/cac:PlannedPeriod/cbc:StartDate</span></code>
         </td>
         <td class="mapping">
@@ -15716,7 +15736,7 @@ Add to `tender.additionalProcurementCategories` array.
       </tr>
       <tr id="BT-537-Lot">
         <td class="field break-all">
-            <p><b>BT-537-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#plannedPeriodSection"></a><br>Duration End Date</p><p><i>BT-537:</i> The (estimated) date when the contract, framework agreement, dynamic purchasing system or qualification system will finish.</p>
+            <p><b>BT-537-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#plannedPeriodSection"></a><br>Duration End Date</p><p><i>BT-537:</i> The (estimated) date when the contract, framework agreement, dynamic purchasing system or qualification system will finish.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:ProcurementProject/cac:PlannedPeriod/cbc:EndDate</span></code>
         </td>
         <td class="mapping">
@@ -15780,7 +15800,7 @@ Add to `tender.additionalProcurementCategories` array.
       </tr>
       <tr id="BT-538-Lot">
         <td class="field break-all">
-            <p><b>BT-538-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#plannedPeriodSection"></a><br>Duration Other</p><p><i>BT-538:</i> The duration is unknown, unlimited, etc.</p>
+            <p><b>BT-538-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#plannedPeriodSection"></a><br>Duration Other</p><p><i>BT-538:</i> The duration is unknown, unlimited, etc.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:ProcurementProject/cac:PlannedPeriod/cbc:DescriptionCode</span></code>
         </td>
         <td class="mapping">
@@ -16924,7 +16944,7 @@ For each `efac:AwardCriterionParameter`, add or update a corresponding `Criterio
       </tr>
       <tr id="BT-553-Tender">
         <td class="field break-all">
-            <p><b>BT-553-Tender</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#lotTenderSection"></a><br>Subcontracting Value</p><p><i>BT-553:</i> The estimated value of the part of the contract that the contractor will subcontract to third parties.</p>
+            <p><b>BT-553-Tender</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#lotTenderSection"></a><br>Subcontracting Value</p><p><i>BT-553:</i> The estimated value of the part of the contract that the contractor will subcontract to third parties.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotTender/efac:SubcontractingTerm[efbc:TermCode/@listName='applicability']/efbc:TermAmount</span></code>
         </td>
         <td class="mapping">
@@ -17013,7 +17033,7 @@ For each `efac:AwardCriterionParameter`, add or update a corresponding `Criterio
       </tr>
       <tr id="BT-555-Tender">
         <td class="field break-all">
-            <p><b>BT-555-Tender</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#lotTenderSection"></a><br>Subcontracting Percentage</p><p><i>BT-555:</i> The estimated percentage of the contract that the contractor will subcontract to third parties compared to the whole contract.</p>
+            <p><b>BT-555-Tender</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#lotTenderSection"></a><br>Subcontracting Percentage</p><p><i>BT-555:</i> The estimated percentage of the contract that the contractor will subcontract to third parties compared to the whole contract.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotTender/efac:SubcontractingTerm[efbc:TermCode/@listName='applicability']/efbc:TermPercent</span></code>
         </td>
         <td class="mapping">
@@ -17076,7 +17096,7 @@ Discard.
       </tr>
       <tr id="BT-57-Lot">
         <td class="field break-all">
-            <p><b>BT-57-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#extensionsSection"></a><br>Renewal Description</p><p><i>BT-57:</i> Any other information about the renewal(s).</p>
+            <p><b>BT-57-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#extensionsSection"></a><br>Renewal Description</p><p><i>BT-57:</i> Any other information about the renewal(s).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:ProcurementProject/cac:ContractExtension/cac:Renewal/cac:Period/cbc:Description</span></code>
         </td>
         <td class="mapping">
@@ -17776,7 +17796,7 @@ Discard.
       </tr>
       <tr id="BT-635-LotResult">
         <td class="field break-all">
-            <p><b>BT-635-LotResult</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Buyer Review Requests Count</p><p><i>BT-635:</i> The number of requests the buyer received to review any of its decisions.</p>
+            <p><b>BT-635-LotResult</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Buyer Review Requests Count</p><p><i>BT-635:</i> The number of requests the buyer received to review any of its decisions.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:AppealRequestsStatistics[efbc:StatisticsCode/@listName='irregularity-type']/efbc:StatisticsNumeric</span></code>
         </td>
         <td class="mapping">
@@ -17853,7 +17873,7 @@ For each `AppealRequestStatistics`, [add a complaints statistic](operations.md#a
       </tr>
       <tr id="BT-64-Lot">
         <td class="field break-all">
-            <p><b>BT-64-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#subcontractingObligationSection"></a><br>Subcontracting Obligation Minimum</p><p><i>BT-64:</i> The minimum percentage of the contract value that the contractor must subcontract using the competitive procedure described in Title III of European Parliament and Council Directive 2009/81/EC.</p>
+            <p><b>BT-64-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#subcontractingObligationSection"></a><br>Subcontracting Obligation Minimum</p><p><i>BT-64:</i> The minimum percentage of the contract value that the contractor must subcontract using the competitive procedure described in Title III of European Parliament and Council Directive 2009/81/EC.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:AllowedSubcontractTerms[cbc:SubcontractingConditionsCode/@listName='subcontracting-obligation']/cbc:MinimumPercent</span></code>
         </td>
         <td class="mapping">
@@ -18071,12 +18091,12 @@ If different from "none":
       </tr>
       <tr id="BT-661-Lot">
         <td class="field break-all">
-            <p><b>BT-661-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#maxCandidatesSection"></a><br>Maximum Candidates Indicator</p><p><i>BT-661:</i> There is a maximum number of candidates to be invited for the second stage of the procedure.</p>
+            <p><b>BT-661-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#maxCandidatesSection"></a><br>Maximum Candidates Indicator</p><p><i>BT-661:</i> There is a maximum number of candidates to be invited for the second stage of the procedure.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingProcess/cac:EconomicOperatorShortList/cbc:LimitationDescription</span></code>
         </td>
         <td class="mapping">
 
-Discard.
+Discard. If the lot's `.secondStage.maximumCandidates` is not empty, there is a maximum number of candidates to be invited for the second stage of the procedure.
 
 ```xml
 <cac:EconomicOperatorShortList>
@@ -18594,7 +18614,7 @@ If "res-pub-ser", add 'publicServiceMissionOrganization' to `tender.otherRequire
       </tr>
       <tr id="BT-710-LotResult">
         <td class="field break-all">
-            <p><b>BT-710-LotResult</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Tender Value Lowest</p><p><i>BT-710:</i> Value of the admissible tender with the lowest value. A tender shall be considered admissible where it has been submitted by a tenderer, who has not been excluded and who meets the selection criteria, and when it is in conformity with the technical specifications without being irregular (e.g. received late, having an abnormally low price or cost) or unacceptable or unsuitable. Only tenders for which it has been verified if they are admissible or inadmissible may be taken into account.</p>
+            <p><b>BT-710-LotResult</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Tender Value Lowest</p><p><i>BT-710:</i> Value of the admissible tender with the lowest value. A tender shall be considered admissible where it has been submitted by a tenderer, who has not been excluded and who meets the selection criteria, and when it is in conformity with the technical specifications without being irregular (e.g. received late, having an abnormally low price or cost) or unacceptable or unsuitable. Only tenders for which it has been verified if they are admissible or inadmissible may be taken into account.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/cbc:LowerTenderAmount</span></code>
         </td>
         <td class="mapping">
@@ -18719,7 +18739,7 @@ For each `ancestor::AppealRequestStatistics`, [add a complaints statistic](opera
       </tr>
       <tr id="BT-712(b)-LotResult">
         <td class="field break-all">
-            <p><b>BT-712(b)-LotResult</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Buyer Review Complainants (Number)</p><p><i>BT-712:</i> The number of organisations that requested the buyer to review any of its decisions (e.g. the technical specifications, award decision).</p>
+            <p><b>BT-712(b)-LotResult</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Buyer Review Complainants (Number)</p><p><i>BT-712:</i> The number of organisations that requested the buyer to review any of its decisions (e.g. the technical specifications, award decision).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:AppealRequestsStatistics[efbc:StatisticsCode/@listName='review-type']/efbc:StatisticsNumeric</span></code>
         </td>
         <td class="mapping">
@@ -18825,7 +18845,7 @@ Discard. Changed documents can be identified using `tender.documents.dateModifie
       </tr>
       <tr id="BT-719-notice">
         <td class="field break-all">
-            <p><b>BT-719-notice</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/change-notice.html#changeSection"></a><br>Change Procurement Documents Date</p><p><i>BT-719:</i> The date and time when the procurement documents have changed.</p>
+            <p><b>BT-719-notice</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/change-notice.html#changeSection"></a><br>Change Procurement Documents Date</p><p><i>BT-719:</i> The date and time when the procurement documents have changed.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Changes/efac:Change/efbc:ProcurementDocumentsChangeDate</span></code>
         </td>
         <td class="mapping">
@@ -19416,7 +19436,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </tr>
       <tr id="BT-729-Lot">
         <td class="field break-all">
-            <p><b>BT-729-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#subcontractingObligationSection"></a><br>Subcontracting Obligation Maximum</p><p><i>BT-729:</i> The maximum percentage of the contract value that the contractor must subcontract using the competitive procedure described in Title III of Directive 2009/81/EC.</p>
+            <p><b>BT-729-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#subcontractingObligationSection"></a><br>Subcontracting Obligation Maximum</p><p><i>BT-729:</i> The maximum percentage of the contract value that the contractor must subcontract using the competitive procedure described in Title III of Directive 2009/81/EC.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:AllowedSubcontractTerms[cbc:SubcontractingConditionsCode/@listName='subcontracting-obligation']/cbc:MaximumPercent</span></code>
         </td>
         <td class="mapping">
@@ -19451,7 +19471,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </tr>
       <tr id="BT-730-Tender">
         <td class="field break-all">
-            <p><b>BT-730-Tender</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#lotTenderSection"></a><br>Subcontracting Value Known</p><p><i>BT-730:</i> The buyer knows at least the estimated value of the part of the contract that the contractor will subcontract to third parties.</p>
+            <p><b>BT-730-Tender</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#lotTenderSection"></a><br>Subcontracting Value Known</p><p><i>BT-730:</i> The buyer knows at least the estimated value of the part of the contract that the contractor will subcontract to third parties.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotTender/efac:SubcontractingTerm[efbc:TermCode/@listName='applicability']/efbc:ValueKnownIndicator</span></code>
         </td>
         <td class="mapping">
@@ -19470,7 +19490,7 @@ Discard. If the award's `.subcontracting.value` is not empty, the buyer knows th
       </tr>
       <tr id="BT-731-Tender">
         <td class="field break-all">
-            <p><b>BT-731-Tender</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#lotTenderSection"></a><br>Subcontracting Percentage Known</p><p><i>BT-731:</i> The buyer knows at least the estimated percentage of the contract that the contractor will subcontract to third parties compared to the whole contract.</p>
+            <p><b>BT-731-Tender</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#lotTenderSection"></a><br>Subcontracting Percentage Known</p><p><i>BT-731:</i> The buyer knows at least the estimated percentage of the contract that the contractor will subcontract to third parties compared to the whole contract.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotTender/efac:SubcontractingTerm[efbc:TermCode/@listName='applicability']/efbc:PercentageKnownIndicator</span></code>
         </td>
         <td class="mapping">
@@ -19489,7 +19509,7 @@ Discard. If the award's `.subcontracting.minimumPercentage` and `.subcontracting
       </tr>
       <tr id="BT-732-Lot">
         <td class="field break-all">
-            <p><b>BT-732-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#securityClearanceSection"></a><br>Security Clearance Description</p><p><i>BT-732:</i> Additional information about the security clearance (e.g. which level of security clearance is required, which team members must have it, whether it is necessary already for accessing the procurement documents or only for contract execution).</p>
+            <p><b>BT-732-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#securityClearanceSection"></a><br>Security Clearance Description</p><p><i>BT-732:</i> Additional information about the security clearance (e.g. which level of security clearance is required, which team members must have it, whether it is necessary already for accessing the procurement documents or only for contract execution).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:SecurityClearanceTerm/cbc:Description</span></code>
         </td>
         <td class="mapping">
@@ -20283,7 +20303,7 @@ Lowercase and convert the code into a two-letter [ISO 639-1 code](https://en.wik
       </tr>
       <tr id="BT-746-Organization">
         <td class="field break-all">
-            <p><b>BT-746-Organization</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Winner Listed</p><p><i>BT-746:</i> The nationality (or nationalities) of the beneficiary owner(s) of the winner, tenderer, or subcontractor is not published in the register(s) established by Directive (EU) 2018/843, because the winner is listed on a regulated market (e.g. a stock exchange) that ensures adequate transparency in line with anti-money laundering legislation.</p>
+            <p><b>BT-746-Organization</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Winner Listed</p><p><i>BT-746:</i> The nationality (or nationalities) of the beneficiary owner(s) of the winner, tenderer, or subcontractor is not published in the register(s) established by Directive (EU) 2018/843, because the winner is listed on a regulated market (e.g. a stock exchange) that ensures adequate transparency in line with anti-money laundering legislation.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:Organization/efbc:ListedOnRegulatedMarketIndicator</span></code>
         </td>
         <td class="mapping">
@@ -20445,7 +20465,7 @@ If `cbc:CalculationExpressionCode[@listName="usage"]` is not set to "used", disc
       </tr>
       <tr id="BT-75-Lot">
         <td class="field break-all">
-            <p><b>BT-75-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#financialGuaranteeSection"></a><br>Guarantee Required Description</p><p><i>BT-75:</i> The description of the financial guarantee required from the tenderer when submitting a tender. The guarantee can take the form of, for example, a payment to the buyer or a document from a bank. Typically, the guarantee would be forfeit when a tenderer has won the contract but then refused to sign it.</p>
+            <p><b>BT-75-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#financialGuaranteeSection"></a><br>Guarantee Required Description</p><p><i>BT-75:</i> The description of the financial guarantee required from the tenderer when submitting a tender. The guarantee can take the form of, for example, a payment to the buyer or a document from a bank. Typically, the guarantee would be forfeit when a tenderer has won the contract but then refused to sign it.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:RequiredFinancialGuarantee/cbc:Description</span></code>
         </td>
         <td class="mapping">
@@ -20554,7 +20574,7 @@ Discard. If the lot's `.submissionTerms.depositsGuarantees` is not empty, a guar
       </tr>
       <tr id="BT-752-Lot-ThresholdNumber">
         <td class="field break-all">
-            <p><b>BT-752-Lot-ThresholdNumber</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/all-in-one.html#selectionCriteriaSection"></a><br>Selection Criteria Second Stage Invite Threshold Number</p><p><i>BT-752:</i> A number linked to the selection criteria (or criterion).</p>
+            <p><b>BT-752-Lot-ThresholdNumber</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Second Stage Invite Threshold Number</p><p><i>BT-752:</i> A number linked to the selection criteria (or criterion).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:SelectionCriteria/efac:CriterionParameter[efbc:ParameterCode/@listName='number-threshold']/efbc:ParameterNumeric</span></code>
         </td>
         <td class="mapping">
@@ -20614,7 +20634,7 @@ If `ancestor::efac:SelectionCriteria/cbc:CalculationExpressionCode[@listName="us
       </tr>
       <tr id="BT-752-Lot-WeightNumber">
         <td class="field break-all">
-            <p><b>BT-752-Lot-WeightNumber</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/all-in-one.html#selectionCriteriaSection"></a><br>Selection Criteria Second Stage Invite Weight Number</p><p><i>BT-752:</i> A number linked to the selection criteria (or criterion).</p>
+            <p><b>BT-752-Lot-WeightNumber</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Second Stage Invite Weight Number</p><p><i>BT-752:</i> A number linked to the selection criteria (or criterion).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:SelectionCriteria/efac:CriterionParameter[efbc:ParameterCode/@listName='number-weight']/efbc:ParameterNumeric</span></code>
         </td>
         <td class="mapping">
@@ -20674,7 +20694,7 @@ If `ancestor::efac:SelectionCriteria/cbc:CalculationExpressionCode[@listName="us
       </tr>
       <tr id="BT-7531-Lot">
         <td class="field break-all">
-            <p><b>BT-7531-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Second Stage Invite Number Weight</p><p><i>BT-7531:</i> Whether the number linked to a selection criterion (or selection criteria) is a type of weight (e.g. a percentage).</p>
+            <p><b>BT-7531-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Second Stage Invite Number Weight</p><p><i>BT-7531:</i> Whether the number linked to a selection criterion (or selection criteria) is a type of weight (e.g. a percentage).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:SelectionCriteria/efac:CriterionParameter[efbc:ParameterCode/@listName='number-weight']/efbc:ParameterCode</span></code>
         </td>
         <td class="mapping">
@@ -20734,7 +20754,7 @@ If `ancestor::efac:SelectionCriteria/cbc:CalculationExpressionCode[@listName="us
       </tr>
       <tr id="BT-7532-Lot">
         <td class="field break-all">
-            <p><b>BT-7532-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Second Stage Invite Number Threshold</p><p><i>BT-7532:</i> Whether the number linked to a selection criterion (or selection criteria) is a type of threshold (e.g. a minimum score, a maximum number of tenders with the highest score passing).</p>
+            <p><b>BT-7532-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Second Stage Invite Number Threshold</p><p><i>BT-7532:</i> Whether the number linked to a selection criterion (or selection criteria) is a type of threshold (e.g. a minimum score, a maximum number of tenders with the highest score passing).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:SelectionCriteria/efac:CriterionParameter[efbc:ParameterCode/@listName='number-threshold']/efbc:ParameterCode</span></code>
         </td>
         <td class="mapping">
@@ -20829,7 +20849,7 @@ If `ancestor::efac:SelectionCriteria/cbc:CalculationExpressionCode[@listName="us
       </tr>
       <tr id="BT-755-Lot">
         <td class="field break-all">
-            <p><b>BT-755-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#accessibilitySection"></a><br>Accessibility Justification</p><p><i>BT-755:</i> The justification for not including accessibility criteria even though the procurement is intended for use by natural persons.</p>
+            <p><b>BT-755-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#accessibilitySection"></a><br>Accessibility Justification</p><p><i>BT-755:</i> The justification for not including accessibility criteria even though the procurement is intended for use by natural persons.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:ProcurementProject/cac:ProcurementAdditionalType[cbc:ProcurementTypeCode/@listName='accessibility']/cbc:ProcurementType</span></code>
         </td>
         <td class="mapping">
@@ -20923,7 +20943,7 @@ Discard.
       </tr>
       <tr id="BT-759-LotResult">
         <td class="field break-all">
-            <p><b>BT-759-LotResult</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Received Submissions Count</p><p><i>BT-759:</i> Number of tenders or requests to participate received. Tenders including variants or multiple tenders submitted (for one lot) by the same tenderer should be counted as one tender.</p>
+            <p><b>BT-759-LotResult</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Received Submissions Count</p><p><i>BT-759:</i> Number of tenders or requests to participate received. Tenders including variants or multiple tenders submitted (for one lot) by the same tenderer should be counted as one tender.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:ReceivedSubmissionsStatistics/efbc:StatisticsNumeric</span></code>
         </td>
         <td class="mapping">
@@ -20964,7 +20984,7 @@ For each `efac:ReceivedSubmissionsStatistics`, [add a bids statistic](operations
       </tr>
       <tr id="BT-76-Lot">
         <td class="field break-all">
-            <p><b>BT-76-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#tendererReqsSection"></a><br>Tenderer Legal Form Description</p><p><i>BT-76:</i> The legal form that must be taken by a group of tenderers that is awarded a contract.</p>
+            <p><b>BT-76-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#tendererReqsSection"></a><br>Tenderer Legal Form Description</p><p><i>BT-76:</i> The legal form that must be taken by a group of tenderers that is awarded a contract.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:TendererQualificationRequest[not(cac:SpecificTendererRequirement)]/cbc:CompanyLegalForm</span></code>
         </td>
         <td class="mapping">
@@ -21001,7 +21021,7 @@ For each `efac:ReceivedSubmissionsStatistics`, [add a bids statistic](operations
       </tr>
       <tr id="BT-760-LotResult">
         <td class="field break-all">
-            <p><b>BT-760-LotResult</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Received Submissions Type</p><p><i>BT-760:</i> The type of tenders or requests to participate received. The total number of tenders received shall be given. When a notice does not fall under Directive 2009/81/EC and is not about social or other specific services, the number of tenders received from micro, small and medium enterprises; the number of tenders received from tenderers registered in other European Economic Area countries and the number of tenders received from tenderers registered in countries outside of the European Economic Area shall also be given. All tenders shall be counted, regardless of whether they are admissible or inadmissible. For tenders submitted by a group of tenderers (e.g. a consortium), the tender shall be counted in the relevant category (e.g. SME) if the majority of the work is expected to be done by tenderers which fall within this category (e.g. they are SMEs).</p>
+            <p><b>BT-760-LotResult</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Received Submissions Type</p><p><i>BT-760:</i> The type of tenders or requests to participate received. The total number of tenders received shall be given. When a notice does not fall under Directive 2009/81/EC and is not about social or other specific services, the number of tenders received from micro, small and medium enterprises; the number of tenders received from tenderers registered in other European Economic Area countries and the number of tenders received from tenderers registered in countries outside of the European Economic Area shall also be given. All tenders shall be counted, regardless of whether they are admissible or inadmissible. For tenders submitted by a group of tenderers (e.g. a consortium), the tender shall be counted in the relevant category (e.g. SME) if the majority of the work is expected to be done by tenderers which fall within this category (e.g. they are SMEs).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:ReceivedSubmissionsStatistics/efbc:StatisticsCode</span></code>
         </td>
         <td class="mapping">
@@ -21459,7 +21479,7 @@ Discard. The contract is awarded within a framework agreement if the related lot
       </tr>
       <tr id="BT-772-Lot">
         <td class="field break-all">
-            <p><b>BT-772-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#tendererReqsSection"></a><br>Late Tenderer Information Description</p><p><i>BT-772:</i> Description of the tenderer-related information that can be supplemented even after the submission deadline.</p>
+            <p><b>BT-772-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#tendererReqsSection"></a><br>Late Tenderer Information Description</p><p><i>BT-772:</i> Description of the tenderer-related information that can be supplemented even after the submission deadline.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:TendererQualificationRequest[not(cbc:CompanyLegalFormCode)]/cac:SpecificTendererRequirement[cbc:TendererRequirementTypeCode/@listName='missing-info-submission']/cbc:Description</span></code>
         </td>
         <td class="mapping">
@@ -21668,7 +21688,7 @@ For each `cac:ProcurementAdditionalType` add a corresponding `.sustainability` o
       </tr>
       <tr id="BT-777-Lot">
         <td class="field break-all">
-            <p><b>BT-777-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#strategicProcurementSection"></a><br>Strategic Procurement Description</p><p><i>BT-777:</i> Description of how the procurement procedure is aiming at reducing the environmental impacts of the procurement, fulfilling social objectives and/or buying an innovative work, supply or service.</p>
+            <p><b>BT-777-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#strategicProcurementSection"></a><br>Strategic Procurement Description</p><p><i>BT-777:</i> Description of how the procurement procedure is aiming at reducing the environmental impacts of the procurement, fulfilling social objectives and/or buying an innovative work, supply or service.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:ProcurementProject/cac:ProcurementAdditionalType[cbc:ProcurementTypeCode/@listName='strategic-procurement']/cbc:ProcurementType</span></code>
         </td>
         <td class="mapping">
@@ -22149,7 +22169,7 @@ Map to `tender.procurementMethodDetails`
       </tr>
       <tr id="BT-98-Lot">
         <td class="field break-all">
-            <p><b>BT-98-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#tenderValiditySection"></a><br>Tender Validity Deadline</p><p><i>BT-98:</i> The period, from the tender submission deadline, for which tenders must remain valid.</p>
+            <p><b>BT-98-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#tenderValiditySection"></a><br>Tender Validity Deadline</p><p><i>BT-98:</i> The period, from the tender submission deadline, for which tenders must remain valid.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:TenderValidityPeriod/cbc:DurationMeasure</span></code>
         </td>
         <td class="mapping">
@@ -22197,7 +22217,7 @@ Map to the lot's `.submissionTerms.bidValidityPeriod.durationInDays`.
       </tr>
       <tr id="BT-99-Lot">
         <td class="field break-all">
-            <p><b>BT-99-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#appealTermsSection"></a><br>Review Deadline Description</p><p><i>BT-99:</i> The description of the time limits for review procedures.</p>
+            <p><b>BT-99-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#appealTermsSection"></a><br>Review Deadline Description</p><p><i>BT-99:</i> The description of the time limits for review procedures.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:AppealTerms/cac:PresentationPeriod/cbc:Description</span></code>
         </td>
         <td class="mapping">
@@ -22580,7 +22600,7 @@ This mapping assumes that the value of this field is consistent across all the L
   <efac:LotTender>
     <cbc:ID schemeName="tender">TEN-0001</cbc:ID>
     <efac:ContractTerm>
-      <efbc:TermCode>all-rev-ic</efbc:TermCode>
+      <efbc:TermCode>all-rev-tic</efbc:TermCode>
       <efbc:TermPercent>100</efbc:TermPercent>
     </efac:ContractTerm>
     <efac:TenderLot>
@@ -22666,6 +22686,25 @@ This mapping assumes that the value of this field is consistent across all the L
   }
 }
 ```
+
+</td>
+      </tr>
+      <tr id="OPP-035-Tender">
+        <td class="field break-all">
+            <p><b>OPP-035-Tender</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#lotTenderSection"></a><br>Revenues Allocation of tickets sales code</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotTender/efac:ContractTerm[efbc:TermCode/text()='all-rev-tic']/efbc:TermCode</span></code>
+        </td>
+        <td class="mapping">
+
+Discard.
+
+```xml
+<efac:ContractTerm>
+  <efbc:TermCode>all-rev-tic</efbc:TermCode>
+</efac:ContractTerm>
+```
+
+
 
 </td>
       </tr>
@@ -22938,7 +22977,7 @@ Discard.
       </tr>
       <tr id="OPT-030-Procedure-SProvider">
         <td class="field break-all">
-            <p><b>OPT-030-Procedure-SProvider</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_buyer_and_service_providers"></a><br>Provided Service Type</p>
+            <p><b>OPT-030-Procedure-SProvider</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_buyer_and_service_providers"></a><br>Provided Service Type</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ContractingParty/cac:Party/cac:ServiceProviderParty/cbc:ServiceTypeCode</span></code>
         </td>
         <td class="mapping">
@@ -22997,7 +23036,7 @@ Discard.
       </tr>
       <tr id="OPT-070-Lot">
         <td class="field break-all">
-            <p><b>OPT-070-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#reservedExecutionSection"></a><br>Reserved Execution justification</p>
+            <p><b>OPT-070-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#reservedExecutionSection"></a><br>Reserved Execution justification</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:ContractExecutionRequirement[cbc:ExecutionRequirementCode/@listName='reserved-execution']/cbc:Description</span></code>
         </td>
         <td class="mapping">
@@ -23119,9 +23158,28 @@ Discard
 
 </td>
       </tr>
+      <tr id="OPT-093-Review">
+        <td class="field break-all">
+            <p><b>OPT-093-Review</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/identifiers.html#identifiersSection"></a><br>Review Technical Identifier</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:AppealsInformation/efac:AppealStatus/cbc:ID</span></code>
+        </td>
+        <td class="mapping">
+
+["This field is currently not used, and is intended for the new "Contract completion" notices that will be added in a future version."](https://github.com/OP-TED/eForms-SDK/releases/tag/1.11.0)
+
+```xml
+<efac:AppealStatus>
+  <cbc:ID>REV-0001</cbc:ID>
+</efac:AppealStatus>
+```
+
+
+
+</td>
+      </tr>
       <tr id="OPT-100-Contract">
         <td class="field break-all">
-            <p><b>OPT-100-Contract</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#settledContractSection"></a><br>Framework Notice Identifier</p>
+            <p><b>OPT-100-Contract</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#settledContractSection"></a><br>Framework Notice Identifier</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:SettledContract/cac:NoticeDocumentReference/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -23264,7 +23322,7 @@ Map to the document's `.url`.
       </tr>
       <tr id="OPT-111-Lot-FiscalLegis">
         <td class="field break-all">
-            <p><b>OPT-111-Lot-FiscalLegis</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Fiscal Legislation Document ID</p>
+            <p><b>OPT-111-Lot-FiscalLegis</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Fiscal Legislation Document ID</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:FiscalLegislationDocumentReference/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -23311,7 +23369,7 @@ Set the document's `.documentType` to 'legislation'.
       </tr>
       <tr id="OPT-111-Part-FiscalLegis">
         <td class="field break-all">
-            <p><b>OPT-111-Part-FiscalLegis</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Fiscal Legislation Document ID</p>
+            <p><b>OPT-111-Part-FiscalLegis</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Fiscal Legislation Document ID</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Part']/cac:TenderingTerms/cac:FiscalLegislationDocumentReference/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -23348,7 +23406,7 @@ Set the document's `.documentType` to 'legislation'.
       </tr>
       <tr id="OPT-112-Lot-EnvironLegis">
         <td class="field break-all">
-            <p><b>OPT-112-Lot-EnvironLegis</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Environmental Legislation Document ID</p>
+            <p><b>OPT-112-Lot-EnvironLegis</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Environmental Legislation Document ID</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:EnvironmentalLegislationDocumentReference/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -23390,7 +23448,7 @@ Set the document's `.documentType` to 'legislation'.
       </tr>
       <tr id="OPT-112-Part-EnvironLegis">
         <td class="field break-all">
-            <p><b>OPT-112-Part-EnvironLegis</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Environmental Legislation Document ID</p>
+            <p><b>OPT-112-Part-EnvironLegis</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Environmental Legislation Document ID</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Part']/cac:TenderingTerms/cac:EnvironmentalLegislationDocumentReference/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -23422,7 +23480,7 @@ Set the document's `.documentType` to 'legislation'.
       </tr>
       <tr id="OPT-113-Lot-EmployLegis">
         <td class="field break-all">
-            <p><b>OPT-113-Lot-EmployLegis</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Employment Legislation Document ID</p>
+            <p><b>OPT-113-Lot-EmployLegis</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Employment Legislation Document ID</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:EmploymentLegislationDocumentReference/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -23464,7 +23522,7 @@ Set the document's `.documentType` to 'legislation'.
       </tr>
       <tr id="OPT-113-Part-EmployLegis">
         <td class="field break-all">
-            <p><b>OPT-113-Part-EmployLegis</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Employment Legislation Document ID</p>
+            <p><b>OPT-113-Part-EmployLegis</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Employment Legislation Document ID</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Part']/cac:TenderingTerms/cac:EmploymentLegislationDocumentReference/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -23894,7 +23952,7 @@ If the value of this field is 0 then discard. Otherwise:
       </tr>
       <tr id="OPT-170-Tenderer">
         <td class="field break-all">
-            <p><b>OPT-170-Tenderer</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#tenderingPartySection"></a><br>Tendering Party Leader</p>
+            <p><b>OPT-170-Tenderer</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#tenderingPartySection"></a><br>Tendering Party Leader</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:TenderingParty/efac:Tenderer/efbc:GroupLeadIndicator</span></code>
         </td>
         <td class="mapping">
@@ -24031,7 +24089,7 @@ If there is an `Organization` in `parties` whose `.id` is equal to the value of 
       </tr>
       <tr id="OPT-210-Tenderer">
         <td class="field break-all">
-            <p><b>OPT-210-Tenderer</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#tenderingPartySection"></a><br>Tendering Party ID</p>
+            <p><b>OPT-210-Tenderer</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#tenderingPartySection"></a><br>Tendering Party ID</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:TenderingParty/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -24232,7 +24290,7 @@ Get the `ancestor::ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext
       </tr>
       <tr id="OPT-300-Tenderer">
         <td class="field break-all">
-            <p><b>OPT-300-Tenderer</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#tenderingPartySection"></a><br>Tenderer ID Reference</p>
+            <p><b>OPT-300-Tenderer</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#tenderingPartySection"></a><br>Tenderer ID Reference</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:TenderingParty/efac:Tenderer/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -24327,7 +24385,7 @@ eForms allows document providers to differ per lot. However, while this may be p
       </tr>
       <tr id="OPT-301-Lot-EmployLegis">
         <td class="field break-all">
-            <p><b>OPT-301-Lot-EmployLegis</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#tenderingPartySection"></a><br>Employment Legislation Organization Technical Identifier Reference</p>
+            <p><b>OPT-301-Lot-EmployLegis</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Employment Legislation Organization Technical Identifier Reference</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:EmploymentLegislationDocumentReference/cac:IssuerParty/cac:PartyIdentification/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -24401,7 +24459,7 @@ eForms allows document providers to differ per lot. However, while this may be p
       </tr>
       <tr id="OPT-301-Lot-EnvironLegis">
         <td class="field break-all">
-            <p><b>OPT-301-Lot-EnvironLegis</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#tenderingPartySection"></a><br>Environmental Legislation Organization Technical Identifier Reference</p>
+            <p><b>OPT-301-Lot-EnvironLegis</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Environmental Legislation Organization Technical Identifier Reference</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:EnvironmentalLegislationDocumentReference/cac:IssuerParty/cac:PartyIdentification/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -24475,7 +24533,7 @@ eForms allows document providers to differ per lot. However, while this may be p
       </tr>
       <tr id="OPT-301-Lot-FiscalLegis">
         <td class="field break-all">
-            <p><b>OPT-301-Lot-FiscalLegis</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#tenderingPartySection"></a><br>Fiscal Legislation Organization Technical Identifier Reference</p>
+            <p><b>OPT-301-Lot-FiscalLegis</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Fiscal Legislation Organization Technical Identifier Reference</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:FiscalLegislationDocumentReference/cac:IssuerParty/cac:PartyIdentification/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -24589,7 +24647,7 @@ eForms allows review bodies and mediation bodies to differ per lot. However, whi
       </tr>
       <tr id="OPT-301-Lot-ReviewInfo">
         <td class="field break-all">
-            <p><b>OPT-301-Lot-ReviewInfo</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#appealTermsSection"></a><br>Review Info Provider Technical Identifier Reference</p>
+            <p><b>OPT-301-Lot-ReviewInfo</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#appealTermsSection"></a><br>Review Info Provider Technical Identifier Reference</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:AppealTerms/cac:AppealInformationParty/cac:PartyIdentification/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -24893,7 +24951,7 @@ eForms allows financing and payer parties to differ per lot. However, while this
       </tr>
       <tr id="OPT-301-Part-EmployLegis">
         <td class="field break-all">
-            <p><b>OPT-301-Part-EmployLegis</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#tenderingPartySection"></a><br>Employment Legislation Organization Technical Identifier Reference</p>
+            <p><b>OPT-301-Part-EmployLegis</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Employment Legislation Organization Technical Identifier Reference</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Part']/cac:TenderingTerms/cac:EmploymentLegislationDocumentReference/cac:IssuerParty/cac:PartyIdentification/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -24961,7 +25019,7 @@ eForms allows financing and payer parties to differ per lot. However, while this
       </tr>
       <tr id="OPT-301-Part-EnvironLegis">
         <td class="field break-all">
-            <p><b>OPT-301-Part-EnvironLegis</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#tenderingPartySection"></a><br>Environmental Legislation Organization Technical Identifier Reference</p>
+            <p><b>OPT-301-Part-EnvironLegis</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Environmental Legislation Organization Technical Identifier Reference</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Part']/cac:TenderingTerms/cac:EnvironmentalLegislationDocumentReference/cac:IssuerParty/cac:PartyIdentification/cbc:ID</span></code>
         </td>
         <td class="mapping">
@@ -25029,7 +25087,7 @@ eForms allows financing and payer parties to differ per lot. However, while this
       </tr>
       <tr id="OPT-301-Part-FiscalLegis">
         <td class="field break-all">
-            <p><b>OPT-301-Part-FiscalLegis</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#tenderingPartySection"></a><br>Fiscal Legislation Organization Technical Identifier Reference</p>
+            <p><b>OPT-301-Part-FiscalLegis</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_legislation_information_provider"></a><br>Fiscal Legislation Organization Technical Identifier Reference</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Part']/cac:TenderingTerms/cac:FiscalLegislationDocumentReference/cac:IssuerParty/cac:PartyIdentification/cbc:ID</span></code>
         </td>
         <td class="mapping">
