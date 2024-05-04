@@ -184,7 +184,7 @@
         },
         "hasOptions": {
           "title": "Options used",
-          "description": "Whether or not the buyer reserves the right to make additional purchases from the supplier, as long as the contract is valid.",
+          "description": "Whether the buyer is expected to reserve the right to make additional purchases from the supplier.",
           "type": [
             "boolean",
             "null"
@@ -235,7 +235,7 @@
         },
         "hasRenewal": {
           "title": "Has renewal",
-          "description": "Whether the contracts can be renewed.",
+          "description": "Whether the buyer is expected to reserve the right to renew the future contract(s).",
           "type": [
             "boolean",
             "null"
@@ -243,7 +243,7 @@
         },
         "renewal": {
           "title": "Renewal",
-          "description": "The options for the renewal of the contracts.",
+          "description": "The options for the renewal of the contract(s).",
           "$ref": "#/definitions/Renewal"
         },
         "secondStage": {
@@ -386,6 +386,32 @@
             "type": "string"
           }
         },
+        "options": {
+          "title": "Options",
+          "description": "A description of the options.",
+          "$ref": "#/definitions/Options"
+        },
+        "hasOptions": {
+          "title": "Options used",
+          "description": "Whether the buyer is expected to reserve the right to make additional purchases from the supplier.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hasRenewal": {
+          "title": "Has renewal",
+          "description": "Whether the buyer is expected to reserve the right to renew the future contract(s).",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "renewal": {
+          "title": "Renewal",
+          "description": "The options for the renewal of the contract(s).",
+          "$ref": "#/definitions/Renewal"
+        },
         "statusDetails": {
           "title": "Status Details",
           "description": "Additional detail on the status of the award. This field can be used to provide the local name of the status.",
@@ -465,6 +491,32 @@
           },
           "uniqueItems": true,
           "minItems": 1
+        },
+        "options": {
+          "title": "Options",
+          "description": "A description of the options.",
+          "$ref": "#/definitions/Options"
+        },
+        "hasOptions": {
+          "title": "Options used",
+          "description": "Whether the buyer reserves the right to make additional purchases from the supplier.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hasRenewal": {
+          "title": "Has renewal",
+          "description": "Whether the buyer reserves the right to renew the contract.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "renewal": {
+          "title": "Renewal",
+          "description": "The options for the renewal of the contract.",
+          "$ref": "#/definitions/Renewal"
         },
         "statusDetails": {
           "title": "Status Details",
@@ -878,7 +930,7 @@
         },
         "hasOptions": {
           "title": "Options used",
-          "description": "Whether the buyer reserves the right to make additional purchases from the supplier, as long as the contract is valid.",
+          "description": "Whether the buyer is expected to reserve the right to make additional purchases from the supplier.",
           "type": [
             "boolean",
             "null"
@@ -904,7 +956,7 @@
         },
         "hasRenewal": {
           "title": "Has renewal",
-          "description": "Whether the contract related to the lot can be renewed.",
+          "description": "Whether the buyer is expected to reserve the right to renew the future contract(s) related to the lot.",
           "type": [
             "boolean",
             "null"
@@ -912,7 +964,7 @@
         },
         "renewal": {
           "title": "Renewal",
-          "description": "The options for the renewal of the contract related to the lot.",
+          "description": "The options for the renewal of the contract(s) related to the lot.",
           "$ref": "#/definitions/Renewal"
         },
         "secondStage": {
@@ -3879,12 +3931,12 @@
       "properties": {
         "id": {
           "title": "Fee ID",
-          "description": "A local identifier for this fee, unique within this block. This field is used to keep track of multiple revisions of a fee through the compilation from release to record mechanism.",
+          "description": "The locally unique identifier for the fee.",
           "type": "string"
         },
         "type": {
           "title": "Fee type",
-          "description": "The type of this fee.",
+          "description": "The type of the fee.",
           "type": [
             "array",
             "null"
@@ -3903,25 +3955,25 @@
         },
         "value": {
           "title": "Value",
-          "description": "The monetary value of this fee.",
+          "description": "The monetary value of the fee.",
           "$ref": "#/definitions/Value"
         },
         "relativeValue": {
           "title": "Relative value",
-          "description": "The value of the participation fee, as a proportion of a monetary value.",
+          "description": "The value of the fee, as a proportion of a monetary value.",
           "$ref": "#/definitions/RelativeValue"
         },
         "description": {
           "title": "Description",
-          "description": "Additional information about this fee, for example: the specific cases in which the fee is applicable (e.g. hard copies of documents only), the way in which the fee is levied, or the exact nature of the fee.",
+          "description": "Additional information about the fee, for example: the specific cases in which the fee is applicable (e.g. hard copies of documents only), the way in which the fee is levied, or the exact nature of the fee.",
           "type": [
             "string",
             "null"
           ]
         },
         "methodOfPayment": {
-          "title": "Method(s) of payment",
-          "description": "The accepted ways in which fees can be paid.",
+          "title": "Payment methods",
+          "description": "The accepted ways to pay the fee.",
           "type": [
             "array",
             "null"
@@ -3932,6 +3984,16 @@
           "codelist": "methodOfPayment.csv",
           "openCodelist": true,
           "uniqueItems": true
+        },
+        "paymentAddress": {
+          "title": "Payment address",
+          "description": "The physical address to which to submit non-electronic payments.",
+          "$ref": "#/definitions/Address"
+        },
+        "payee": {
+          "title": "Payee",
+          "description": "The organization that receives the fee.",
+          "$ref": "#/definitions/OrganizationReference"
         }
       }
     },
