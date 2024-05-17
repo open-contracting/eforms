@@ -1724,7 +1724,7 @@ Add a `Classification` object to `tender.procurementMethodRationaleClassificatio
 
 - Map the code to its `.id`.
 - Look up the code's label in the [authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/direct-award-justification) and map it to `.description`.
-- Set `.scheme` to 'eforms-direct-award-justification'.
+- Set `.scheme` to 'eu-direct-award-justification'.
 
 ```xml
 <cac:ProcessJustification>
@@ -1739,7 +1739,7 @@ Add a `Classification` object to `tender.procurementMethodRationaleClassificatio
       {
         "id": "ecom-excl",
         "description": "Specific exclusion in the field of electronic communications",
-        "scheme": "eforms-direct-award-justification"
+        "scheme": "eu-direct-award-justification"
       }
     ]
   }
