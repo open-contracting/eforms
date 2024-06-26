@@ -556,7 +556,7 @@ Map to `tender.procedure.isAccelerated` as a boolean.
 - [Get the organization for the buyer](operations.md#get-the-organization-for-the-buyer), and add a `Classification` object to its `.details.classifications` array.
 - Map the value of this field to the classification's `.id`.
 - Look up the code's label in the [authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/buyer-legal-type) and map it to the classification's `.description`.
-- Set the classification's `.scheme` to 'TED_CA_TYPE'.
+- Set the classification's `.scheme` to 'eu-buyer-legal-type'.
 
 ```xml
 <cac:ContractingParty>
@@ -579,7 +579,7 @@ Map to `tender.procedure.isAccelerated` as a boolean.
       "details": {
         "classifications": [
           {
-            "scheme": "TED_CA_TYPE",
+            "scheme": "eu-buyer-legal-type",
             "id": "body-pl",
             "description": "Body governed by public law."
           }
@@ -18890,8 +18890,9 @@ Otherwise, get the `Document` in `tender.documents` with 'biddingDocuments`in`.d
 
 [Get the bid for the LotTender](operations.md#get-the-bid-for-a-lottender) and map to the bid''s `.value`. Map `@currencyID` to the value''s `.currency`.
 Get the `ancestor::efac:NoticeResult/efac:LotResult` with an `/efac:LotTender/cbc:ID` equal to the value of `ancestor::efac:LotTender/cbc:ID`. Get the `Award` in `awards` whose `id` is equal to the value of this `efac:LotResult`'s `/cbc:ID`. If none exists yet:
-1\. Add an `Award` to `awards`
-2\. Set its `.id` to the value of this `efac:LotResult/cbc:ID`
+
+1. Add an `Award` to `awards`
+2. Set its `.id` to the value of this `efac:LotResult/cbc:ID`
 
 Add the value of `ancestor::efac:TenderLot/cbc:ID` to the award's `.relatedLots`
 Map the value of this field to the awards `.value.amount` and map `@currencyID` to the value's `.currency`.
