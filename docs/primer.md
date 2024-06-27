@@ -26,7 +26,7 @@ In OCDS, planning information is modeled as a planning process, which is defined
 
 There are differences between a procedure in eForms and a contracting process in OCDS:
 
-* In OCDS, a contracting process includes an implementation stage, covering payments, progress updates and completion information. eForms does not currently cover the implementation stage; a Contract Completion form is [planned](https://docs.ted.europa.eu/home/eforms/FAQ/index.html#_forms_and_procedures).
+* In OCDS, a contracting process includes an implementation stage, covering payments, progress updates and completion information. eForms does not currently cover the implementation stage; a Contract Completion form is [planned](https://docs.ted.europa.eu/eforms-common/FAQ/index.html#_forms_and_procedures).
 * In multi-stage procedures (e.g. framework agreements with reopening of competition), OCDS treats each round of competition as a separate contracting process; for more information, see [Framework agreements](https://standard.open-contracting.org/latest/en/guidance/map/framework_agreements/). eForms treats each round of competition as  occurring within the same procedure.
 
 The following diagram illustrates the relationship between:

@@ -23803,7 +23803,7 @@ For each `efbc:StatisticsCode`, add a `Classification` object to the item's `add
 
 - Set the classification's `.scheme` to "vehicles".
 - Map the value of the field to the classification's `.id`.
-- Look up the code's label in the [authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/vehicles) and map it to the classification's `.description`.
+- Look up the code's label in the [eForms codelist](https://docs.ted.europa.eu/eforms/latest/reference/code-lists/vehicles.html) and map it to the classification's `.description`.
 
 ```xml
 <efac:NoticeResult>
