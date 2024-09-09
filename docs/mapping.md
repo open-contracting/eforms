@@ -7435,7 +7435,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-1252)-Procedure. 
         </td>
         <td class="mapping">
 
-Get the `withheldInformationItem` object created for BT-195(BT-1252)-Procedure. Add a `Classification` object to the withheld information item's `.rationalClassifications` array, map the value of the `cbc:ReasonCode` to `.id`, and set `.scheme` to 'eu-non-publication-justification'. Look up the code in the [authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/non-publication-justification), map its label to `.description` and its URI to `.uri`.
+Get the `withheldInformationItem` object created for BT-195(BT-135)-Procedure. Add a `Classification` object to the withheld information item's `.rationalClassifications` array, map the value of the `cbc:ReasonCode` to `.id`, and set `.scheme` to 'eu-non-publication-justification'. Look up the code in the [authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/non-publication-justification), map its label to `.description` and its URI to `.uri`.
 
 ```xml
 <efac:FieldsPrivacy>
