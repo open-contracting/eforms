@@ -9924,7 +9924,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-541)-LotsGroup-Th
         </td>
         <td class="mapping">
 
-Get the `withheldInformationItem` object created for BT-195(BT-541)-LotsGroup-Threshold and `ancestor::cac:ProcurementProjectLot[cbc:ID schemeName="LotsGroup"]`. [Convert date to ISO format](operations.md#convert-a-date-to-iso-format) and map to its `.availabilityDate`
+Get the `withheldInformationItem` object created for BT-195(BT-541)-LotsGroup-Weight and `ancestor::cac:ProcurementProjectLot[cbc:ID schemeName="LotsGroup"]`. [Convert date to ISO format](operations.md#convert-a-date-to-iso-format) and map to its `.availabilityDate`
 
 ```xml
 <efac:FieldsPrivacy>
