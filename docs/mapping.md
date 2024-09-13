@@ -3086,7 +3086,7 @@ Map the value of this field to the award's `.valueCalculationMethod`.
       <tr id="BT-19-Lot">
         <td class="field break-all">
             <p><b>BT-19-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#nonelectronicSection"></a><br>Submission Nonelectronic Justification</p><p><i>BT-19:</i> The justification for electronic submission of tenders, requests to participate, or expressions of interest not being possible.</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingProcess/cac:ProcessJustification[cbc:ProcessReasonCode/@listName='no-esubmission-justification']/cbc:ProcessReasonCode</span></code>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingProcess/cac:ProcessJustification/cbc:ProcessReasonCode[@listName='no-esubmission-justification']</span></code>
         </td>
         <td class="mapping">
 
@@ -9924,7 +9924,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-541)-LotsGroup-Th
         </td>
         <td class="mapping">
 
-Get the `withheldInformationItem` object created for BT-195(BT-541)-LotsGroup-Threshold and `ancestor::cac:ProcurementProjectLot[cbc:ID schemeName="LotsGroup"]`. [Convert date to ISO format](operations.md#convert-a-date-to-iso-format) and map to its `.availabilityDate`
+Get the `withheldInformationItem` object created for BT-195(BT-541)-LotsGroup-Weight and `ancestor::cac:ProcurementProjectLot[cbc:ID schemeName="LotsGroup"]`. [Convert date to ISO format](operations.md#convert-a-date-to-iso-format) and map to its `.availabilityDate`
 
 ```xml
 <efac:FieldsPrivacy>
@@ -15912,7 +15912,7 @@ For each `cac:SubordinateAwardingCriterion`, add or update a corresponding `Awar
       </tr>
       <tr id="BT-539-LotsGroup">
         <td class="field break-all">
-            <p><b>BT-539-LotsGroup</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#awardCriteriaSection"></a><br>Award Criterion Type</p><p><i>BT-539:</i> Whether the criterion concerns the price, the cost, or a non-price non-cost attribute of the tender. (Price is the acquisition price; cost is any other non-price monetary criterion.)</p>
+            <p><b>BT-539-LotsGroup</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#awardCriteriaSection"></a><br>Award Criterion Type</p><p><i>BT-539:</i> Whether the criterion concerns the price, the cost, or a non-price non-cost attribute of the tender. (Price is the acquisition price; cost is any other non-price monetary criterion.)</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='LotsGroup']/cac:TenderingTerms/cac:AwardingTerms/cac:AwardingCriterion/cac:SubordinateAwardingCriterion/cbc:AwardingCriterionTypeCode[@listName='award-criterion-type']</span></code>
         </td>
         <td class="mapping">
@@ -16905,7 +16905,7 @@ For each `efac:AwardCriterionParameter`, add or update a corresponding `Criterio
       </tr>
       <tr id="BT-543-LotsGroup">
         <td class="field break-all">
-            <p><b>BT-543-LotsGroup</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#awardCriteriaSection"></a><br>Award Criteria Complicated</p><p><i>BT-543:</i> The mathematical equation or any other description used for complicated weighing of criteria (e.g. non-linear weighing, the analytic hierarchy process) when a weighing cannot be expressed per criterion. </p>
+            <p><b>BT-543-LotsGroup</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#awardCriteriaSection"></a><br>Award Criteria Complicated</p><p><i>BT-543:</i> The mathematical equation or any other description used for complicated weighing of criteria (e.g. non-linear weighing, the analytic hierarchy process) when a weighing cannot be expressed per criterion. </p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='LotsGroup']/cac:TenderingTerms/cac:AwardingTerms/cac:AwardingCriterion/cbc:CalculationExpression</span></code>
         </td>
         <td class="mapping">
@@ -18110,8 +18110,8 @@ Discard. If the lot's `.secondStage.maximumCandidates` is not empty, there is a 
       </tr>
       <tr id="BT-67(a)-Procedure">
         <td class="field break-all">
-            <p><b>BT-67(a)-Procedure</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#exclusionGrounds"></a><br>Exclusion Grounds</p><p><i>BT-67:</i> The brief description of criteria regarding the personal situation of tenderers that may lead to their exclusion. This shall include a list of all such criteria and indicate required information (e.g. self-declaration, documentation). This may also include specific national exclusion grounds. </p>
-            <code class="docutils literal notranslate"><span class="pre">/*/cac:TenderingTerms/cac:TendererQualificationRequest/cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='exclusion-ground']</span></code>
+            <p><b>BT-67(a)-Procedure</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#exclusionGrounds"></a><br>Exclusion Ground</p><p><i>BT-67:</i> The brief description of criteria regarding the personal situation of tenderers that may lead to their exclusion. This shall include a list of all such criteria and indicate required information (e.g. self-declaration, documentation). This may also include specific national exclusion grounds. </p>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:TenderingTerms/cac:TendererQualificationRequest[cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode/@listName='exclusion-ground']/cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode</span></code>
         </td>
         <td class="mapping">
 
@@ -18142,8 +18142,8 @@ Add an `ExclusionCriterion` object to the `tender.exclusionGrounds.criteria` arr
       </tr>
       <tr id="BT-67(b)-Procedure">
         <td class="field break-all">
-            <p><b>BT-67(b)-Procedure</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#exclusionGrounds"></a><br>Exclusion Grounds</p><p><i>BT-67:</i> The brief description of criteria regarding the personal situation of tenderers that may lead to their exclusion. This shall include a list of all such criteria and indicate required information (e.g. self-declaration, documentation). This may also include specific national exclusion grounds. </p>
-            <code class="docutils literal notranslate"><span class="pre">/*/cac:TenderingTerms/cac:TendererQualificationRequest/cac:SpecificTendererRequirement/cbc:Description</span></code>
+            <p><b>BT-67(b)-Procedure</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#exclusionGrounds"></a><br>Exclusion Ground Description</p><p><i>BT-67:</i> The brief description of criteria regarding the personal situation of tenderers that may lead to their exclusion. This shall include a list of all such criteria and indicate required information (e.g. self-declaration, documentation). This may also include specific national exclusion grounds. </p>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:TenderingTerms/cac:TendererQualificationRequest[cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode/@listName='exclusion-ground']/cac:SpecificTendererRequirement/cbc:Description</span></code>
         </td>
         <td class="mapping">
 
@@ -18170,6 +18170,36 @@ Concatenate to the `ExclusionCriteria` object's `.description` using a colon and
   }
 }
 ```
+
+</td>
+      </tr>
+      <tr id="BT-681-Lot">
+        <td class="field break-all">
+            <p><b>BT-681-Lot</b>  <br>Foreign Subsidies Regulation</p><p><i>BT-681:</i> The Foreign Subsidies Regulation (FSR) (EU) 2022/2560, in line with Article 28 thereof, is applicable to this procurement procedure.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:ContractExecutionRequirement[cbc:ExecutionRequirementCode/@listName='fsr']/cbc:ExecutionRequirementCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-682-Tender">
+        <td class="field break-all">
+            <p><b>BT-682-Tender</b> <b>*</b> <br>Foreign Subsidies Measures</p><p><i>BT-682:</i> Measures applied under the Foreign Subsidies Regulation (EU) 2022/2560.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotTender/efbc:ForeignSubsidiesMeasuresCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
 
 </td>
       </tr>
@@ -18543,7 +18573,7 @@ Add it to the document's `.languages` array.
       <tr id="BT-71-Lot">
         <td class="field break-all">
             <p><b>BT-71-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#reservedParticipationSection"></a><br>Reserved Participation</p><p><i>BT-71:</i> Whether participation is reserved for specific organisations (e.g. sheltered workshops, organisations pursuing a public service mission).</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:TendererQualificationRequest[not(cbc:CompanyLegalFormCode)][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='missing-info-submission'])]/cac:SpecificTendererRequirement[cbc:TendererRequirementTypeCode/@listName='reserved-procurement']/cbc:TendererRequirementTypeCode</span></code>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:TendererQualificationRequest[not(cbc:CompanyLegalFormCode)][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='missing-info-submission'])][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='selection-criteria-source'])]/cac:SpecificTendererRequirement[cbc:TendererRequirementTypeCode/@listName='reserved-procurement']/cbc:TendererRequirementTypeCode</span></code>
         </td>
         <td class="mapping">
 
@@ -18586,7 +18616,7 @@ If "res-pub-ser", add 'publicServiceMissionOrganization' to the lot's `.otherReq
       <tr id="BT-71-Part">
         <td class="field break-all">
             <p><b>BT-71-Part</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#reservedParticipationSection"></a><br>Reserved Participation</p><p><i>BT-71:</i> Whether participation is reserved for specific organisations (e.g. sheltered workshops, organisations pursuing a public service mission).</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Part']/cac:TenderingTerms/cac:TendererQualificationRequest[not(cbc:CompanyLegalFormCode)][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='missing-info-submission'])]/cac:SpecificTendererRequirement[cbc:TendererRequirementTypeCode/@listName='reserved-procurement']/cbc:TendererRequirementTypeCode</span></code>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Part']/cac:TenderingTerms/cac:TendererQualificationRequest[not(cbc:CompanyLegalFormCode)][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='missing-info-submission'])][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='selection-criteria-source'])]/cac:SpecificTendererRequirement[cbc:TendererRequirementTypeCode/@listName='reserved-procurement']/cbc:TendererRequirementTypeCode</span></code>
         </td>
         <td class="mapping">
 
@@ -18888,11 +18918,11 @@ Otherwise, get the `Document` in `tender.documents` with 'biddingDocuments`in`.d
         </td>
         <td class="mapping">
 
-[Get the bid for the LotTender](operations.md#get-the-bid-for-a-lottender) and map to the bid''s `.value`. Map `@currencyID` to the value''s `.currency`.
+[Get the bid for the LotTender](operations.md#get-the-bid-for-a-lottender) and map to the bid's `.value`. Map `@currencyID` to the value's `.currency`.
 Get the `ancestor::efac:NoticeResult/efac:LotResult` with an `/efac:LotTender/cbc:ID` equal to the value of `ancestor::efac:LotTender/cbc:ID`. Get the `Award` in `awards` whose `id` is equal to the value of this `efac:LotResult`'s `/cbc:ID`. If none exists yet:
 
 1. Add an `Award` to `awards`
-2. Set its `.id` to the value of this `efac:LotResult/cbc:ID`
+1. Set its `.id` to the value of this `efac:LotResult/cbc:ID`
 
 Add the value of `ancestor::efac:TenderLot/cbc:ID` to the award's `.relatedLots`
 Map the value of this field to the awards `.value.amount` and map `@currencyID` to the value's `.currency`.
@@ -20270,7 +20300,7 @@ Lowercase and convert the code into a two-letter [ISO 639-1 code](https://en.wik
       <tr id="BT-745-Lot">
         <td class="field break-all">
             <p><b>BT-745-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#nonelectronicSection"></a><br>Submission Nonelectronic Description</p><p><i>BT-745:</i> The description of how to submit tenders, requests to participate, or expressions of interest non-electronically.</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingProcess/cac:ProcessJustification[cbc:ProcessReasonCode/@listName='no-esubmission-justification']/cbc:Description</span></code>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingProcess/cac:ProcessJustification/cbc:Description</span></code>
         </td>
         <td class="mapping">
 
@@ -20339,131 +20369,6 @@ Lowercase and convert the code into a two-letter [ISO 639-1 code](https://en.wik
 
 </td>
       </tr>
-      <tr id="BT-747-Lot">
-        <td class="field break-all">
-            <p><b>BT-747-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Type</p><p><i>BT-747:</i> The criteria (or criterion) concern(s), for example, economic and financial standing or technical and professional ability. </p>
-            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:SelectionCriteria/cbc:CriterionTypeCode[@listName='selection-criterion']</span></code>
-        </td>
-        <td class="mapping">
-
-If `cbc:CalculationExpressionCode[@listName="usage"]` is not set to "used", discard. Otherwise, these values are mapped to the same `SelectionCriterion` objects as created for BT-40, BT-749, BT-750, BT-752, BT-7531 and BT-7532.
-
-- [Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot).
-- For each `<efac:SelectionCriteria>`, add or update a corresponding `SelectionCriterion` object in the lot's `.selectionCriteria.criteria`.
-- Identify the equivalent code in the [selection criterion mapping table](codelists/selection-criterion), and set it as the criterion's `.type`.
-
-```xml
-<cac:ProcurementProjectLot>
-  <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
-  <cac:TenderingTerms>
-    <ext:UBLExtensions>
-      <ext:UBLExtension>
-        <ext:ExtensionContent>
-          <efext:EformsExtension>
-            <efac:SelectionCriteria>
-              <cbc:CriterionTypeCode listName="selection-criterion">ef-stand</cbc:CriterionTypeCode>
-            </efac:SelectionCriteria>
-          </efext:EformsExtension>
-        </ext:ExtensionContent>
-      </ext:UBLExtension>
-    </ext:UBLExtensions>
-  </cac:TenderingTerms>
-</cac:ProcurementProjectLot>
-```
-
-```json
-{
-  "tender": {
-    "lots": [
-      {
-        "id": "LOT-0001",
-        "selectionCriteria": {
-          "criteria": [
-            {
-              "type": "economic"
-            }
-          ]
-        }
-      }
-    ]
-  }
-}
-```
-
-</td>
-      </tr>
-      <tr id="BT-748-Lot">
-        <td class="field break-all">
-            <p><b>BT-748-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Used</p><p><i>BT-748:</i> The criteria (or criterion) of the given type are (is) used, unused, or (in case of prior information notice used as a call for competition or to reduce time limits) the use is not yet known.</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:SelectionCriteria/cbc:CalculationExpressionCode[@listName='usage']</span></code>
-        </td>
-        <td class="mapping">
-
-Discard.
-
-```xml
-<efac:SelectionCriteria>
-  <cbc:CalculationExpressionCode listName="usage">used</cbc:CalculationExpressionCode>
-</efac:SelectionCriteria>
-```
-
-
-
-</td>
-      </tr>
-      <tr id="BT-749-Lot">
-        <td class="field break-all">
-            <p><b>BT-749-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Name</p><p><i>BT-749:</i> The name of the selection criteria (or criterion).</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:SelectionCriteria/cbc:Name</span></code>
-        </td>
-        <td class="mapping">
-
-If `cbc:CalculationExpressionCode[@listName="usage"]` is not set to "used", discard. Otherwise, these values are mapped to the same `SelectionCriterion` objects as created for BT-40-Lot, BT-747-Lot, BT-749-Lot, BT-750-Lot, BT-752-Lot-ThresholdNumber, BT-752-Lot-WeightNumber, BT-7531-Lot and BT-7532-Lot.
-
-- [Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot).
-- For each `efac:SelectionCriteria`, add or update a corresponding `SelectionCriterion` object in the lot's `.selectionCriteria.criteria`.
-- Map to the criterion's `.description`. Concatenate it with <a href="#BT-750-Lot">BT-750-Lot Selection Criteria Description</a>.
-
-```xml
-<cac:ProcurementProjectLot>
-  <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
-  <cac:TenderingTerms>
-    <ext:UBLExtensions>
-      <ext:UBLExtension>
-        <ext:ExtensionContent>
-          <efext:EformsExtension>
-            <efac:SelectionCriteria>
-              <cbc:Name languageID="ENG">Minimum Turnover</cbc:Name>
-            </efac:SelectionCriteria>
-          </efext:EformsExtension>
-        </ext:ExtensionContent>
-      </ext:UBLExtension>
-    </ext:UBLExtensions>
-  </cac:TenderingTerms>
-</cac:ProcurementProjectLot>
-```
-
-```json
-{
-  "tender": {
-    "lots": [
-      {
-        "id": "LOT-0001",
-        "selectionCriteria": {
-          "criteria": [
-            {
-              "description": "Minimum Turnover"
-            }
-          ]
-        }
-      }
-    ]
-  }
-}
-```
-
-</td>
-      </tr>
       <tr id="BT-75-Lot">
         <td class="field break-all">
             <p><b>BT-75-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#financialGuaranteeSection"></a><br>Guarantee Required Description</p><p><i>BT-75:</i> The description of the financial guarantee required from the tenderer when submitting a tender. The guarantee can take the form of, for example, a payment to the buyer or a document from a bank. Typically, the guarantee would be forfeit when a tenderer has won the contract but then refused to sign it.</p>
@@ -20503,7 +20408,7 @@ If `cbc:CalculationExpressionCode[@listName="usage"]` is not set to "used", disc
       </tr>
       <tr id="BT-750-Lot">
         <td class="field break-all">
-            <p><b>BT-750-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Description</p><p><i>BT-750:</i> The brief description of the selection criteria (or criterion), including minimum requirements, required information (e.g. self-declaration, documentation) and how the criteria or criterion will be used to select candidates to be invited for the second stage of the procedure (if a maximum number of candidates was set).</p>
+            <p><b>BT-750-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Description</p><p><i>BT-750:</i> The brief description of the selection criteria (or criterion), including minimum requirements, required information (e.g. self-declaration, documentation) and how the criteria or criterion will be used to select candidates to be invited for the second stage of the procedure (if a maximum number of candidates was set).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:SelectionCriteria/cbc:Description</span></code>
         </td>
         <td class="mapping">
@@ -21443,7 +21348,7 @@ Discard. The contract is awarded within a framework agreement if the related lot
       <tr id="BT-771-Lot">
         <td class="field break-all">
             <p><b>BT-771-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#tendererReqsSection"></a><br>Late Tenderer Information</p><p><i>BT-771:</i> Whether tenderer-related information can be supplemented even after the submission deadline.</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:TendererQualificationRequest[not(cbc:CompanyLegalFormCode)]/cac:SpecificTendererRequirement[cbc:TendererRequirementTypeCode/@listName='missing-info-submission']/cbc:TendererRequirementTypeCode</span></code>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:TendererQualificationRequest[not(cbc:CompanyLegalFormCode)][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='reserved-procurement'])][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='selection-criteria-source'])]/cac:SpecificTendererRequirement[cbc:TendererRequirementTypeCode/@listName='missing-info-submission']/cbc:TendererRequirementTypeCode</span></code>
         </td>
         <td class="mapping">
 
@@ -21481,7 +21386,7 @@ Discard. The contract is awarded within a framework agreement if the related lot
       <tr id="BT-772-Lot">
         <td class="field break-all">
             <p><b>BT-772-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#tendererReqsSection"></a><br>Late Tenderer Information Description</p><p><i>BT-772:</i> Description of the tenderer-related information that can be supplemented even after the submission deadline.</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:TendererQualificationRequest[not(cbc:CompanyLegalFormCode)]/cac:SpecificTendererRequirement[cbc:TendererRequirementTypeCode/@listName='missing-info-submission']/cbc:Description</span></code>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:TendererQualificationRequest[not(cbc:CompanyLegalFormCode)][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='reserved-procurement'])][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='selection-criteria-source'])]/cac:SpecificTendererRequirement[cbc:TendererRequirementTypeCode/@listName='missing-info-submission']/cbc:Description</span></code>
         </td>
         <td class="mapping">
 
@@ -21959,6 +21864,51 @@ For each `cac:ProcurementAdditionalType` add a corresponding `.sustainability` o
   }
 }
 ```
+
+</td>
+      </tr>
+      <tr id="BT-806-Procedure">
+        <td class="field break-all">
+            <p><b>BT-806-Procedure</b> <b>*</b> <br>Exclusion Grounds Source</p><p><i>BT-806:</i> Where the exclusions grounds are defined, for example, the procurement documents or in ESPD.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:TenderingTerms/cac:TendererQualificationRequest[cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode/@listName='exclusion-grounds-source']/cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-809-Lot">
+        <td class="field break-all">
+            <p><b>BT-809-Lot</b> <b>*</b> <br>Selection Criteria</p><p><i>BT-809:</i> The criteria (or criterion).</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:SelectionCriteria/cbc:TendererRequirementTypeCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-821-Lot">
+        <td class="field break-all">
+            <p><b>BT-821-Lot</b> <b>*</b> <br>Selection Criteria Source</p><p><i>BT-821:</i> Where the selection criteria are defined, for example, the procurement documents or in ESPD.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:TendererQualificationRequest[not(cbc:CompanyLegalFormCode)][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='missing-info-submission'])][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='reserved-procurement'])]/cac:SpecificTendererRequirement[cbc:TendererRequirementTypeCode/@listName='selection-criteria-source']/cbc:TendererRequirementTypeCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
 
 </td>
       </tr>
