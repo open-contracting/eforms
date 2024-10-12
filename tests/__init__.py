@@ -1,11 +1,11 @@
 languages = {
-    'en': 'English',
+    "en": "English",
 }
 
 test_basic_params = {
-    'en': 'OCDS',
+    "en": "OCDS",
 }
 
 test_search_params = [
-    ('en', r'found \d+ page\(s\) matching'),
+    ("en", r"found \d+ page\(s\) matching"),
 ]
