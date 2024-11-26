@@ -12518,7 +12518,7 @@ If `@unitCode` is set to "MONTH", multiply by 30. If `@unitCode` is set to "YEAR
         </td>
         <td class="mapping">
 
-If `cbc:CalculationExpressionCode[@listName="usage"]` is not set to "used", discard. Otherwise, this field is maps to the same `SelectionCriterion` objects as created for BT-747, BT-749, BT-750, BT-752, BT-7531 and BT-7532.
+This field maps to the same `SelectionCriterion` objects as created for BT-750, BT-752, BT-7531, BT-7532 and BT-809-Lot.
 
 - [Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot).
 - For each `efac:SelectionCriteria`, add or update a corresponding `SelectionCriterion` object in the lot's `.selectionCriteria.criteria`.
@@ -18118,9 +18118,11 @@ Discard. If the lot's `.secondStage.maximumCandidates` is not empty, there is a 
 Add an `ExclusionCriterion` object to the `tender.exclusionGrounds.criteria` array and map to its `.type`. Look up the code's description in the [codelist](https://docs.ted.europa.eu/eforms/latest/reference/code-lists/exclusion-ground.html#_codes) and map to the `ExclusionCriterion` object's `.description`.
 
 ```xml
-<cac:SpecificTendererRequirement>
-  <cbc:TendererRequirementTypeCode listName="exclusion-ground">crime-org</cbc:TendererRequirementTypeCode>
-</cac:SpecificTendererRequirement>
+<cac:TendererQualificationRequest>
+  <cac:SpecificTendererRequirement>
+    <cbc:TendererRequirementTypeCode listName="exclusion-ground">exg-crim-part</cbc:TendererRequirementTypeCode>
+  </cac:SpecificTendererRequirement>
+</cac:TendererQualificationRequest>
 ```
 
 ```json
@@ -18129,7 +18131,7 @@ Add an `ExclusionCriterion` object to the `tender.exclusionGrounds.criteria` arr
     "exclusionGrounds": {
       "criteria": [
         {
-          "type": "crime-org",
+          "type": "exg-crim-part",
           "description": "Participation in a criminal organisation"
         }
       ]
@@ -18152,9 +18154,11 @@ This field maps to the same `ExclusionCriteria` objects as created for BT-67(a)-
 Concatenate to the `ExclusionCriteria` object's `.description` using a colon and a space (": ") as a separator.
 
 ```xml
-<cac:SpecificTendererRequirement>
-  <cbc:Description languageID="ENG">Applicants not satisfying ...</cbc:Description>
-</cac:SpecificTendererRequirement>
+<cac:TendererQualificationRequest>
+  <cac:SpecificTendererRequirement>
+    <cbc:Description languageID="ENG">Applicants not satisfying ...</cbc:Description>
+  </cac:SpecificTendererRequirement>
+</cac:TendererQualificationRequest>
 ```
 
 ```json
@@ -18175,31 +18179,78 @@ Concatenate to the `ExclusionCriteria` object's `.description` using a colon and
       </tr>
       <tr id="BT-681-Lot">
         <td class="field break-all">
-            <p><b>BT-681-Lot</b>  <br>Foreign Subsidies Regulation</p><p><i>BT-681:</i> The Foreign Subsidies Regulation (FSR) (EU) 2022/2560, in line with Article 28 thereof, is applicable to this procurement procedure.</p>
+            <p><b>BT-681-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#foreignSubsidiesRegulationSection"></a><br>Foreign Subsidies Regulation</p><p><i>BT-681:</i> The Foreign Subsidies Regulation (FSR) (EU) 2022/2560, in line with Article 28 thereof, is applicable to this procurement procedure.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:ContractExecutionRequirement[cbc:ExecutionRequirementCode/@listName='fsr']/cbc:ExecutionRequirementCode</span></code>
         </td>
         <td class="mapping">
 
+[Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot). If "true", add 'EU-FSR' to the lot's `.coveredBy` array. If "false", discard.
 
+```xml
+<cac:ProcurementProjectLot>
+  <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+  <cac:TenderingTerms>
+    <cac:ContractExecutionRequirement>
+      <cbc:ExecutionRequirementCode listName="fsr">true</cbc:ExecutionRequirementCode>
+    </cac:ContractExecutionRequirement>
+  </cac:TenderingTerms>
+</cac:ProcurementProjectLot>
+```
 
-
-
-
+```json
+{
+  "tender": {
+    "lots": [
+      {
+        "id": "LOT-0001",
+        "coveredBy": [
+          "EU-FSR"
+        ]
+      }
+    ]
+  }
+}
+```
 
 </td>
       </tr>
       <tr id="BT-682-Tender">
         <td class="field break-all">
-            <p><b>BT-682-Tender</b> <b>*</b> <br>Foreign Subsidies Measures</p><p><i>BT-682:</i> Measures applied under the Foreign Subsidies Regulation (EU) 2022/2560.</p>
+            <p><b>BT-682-Tender</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#foreignSubsidiesRegulationSection"></a><br>Foreign Subsidies Measures</p><p><i>BT-682:</i> Measures applied under the Foreign Subsidies Regulation (EU) 2022/2560.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotTender/efbc:ForeignSubsidiesMeasuresCode</span></code>
         </td>
         <td class="mapping">
 
+[Get the bid for the LotTender](operations.md#get-the-bid-for-a-lottender) and map to its `.foreignSubsidyMeasures`.
 
+```xml
+<efac:LotResult>
+  <cbc:ID schemeName="result">RES-0002</cbc:ID>
+  <efac:LotTender>
+    <cbc:ID schemeName="tender">TEN-0001</cbc:ID>
+    <efbc:ForeignSubsidiesMeasuresCode listName="foreign-subsidy-measure-conclusion">fsr-adm-clos</efbc:ForeignSubsidiesMeasuresCode>
+    <efac:TenderLot>
+      <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+    </efac:TenderLot>
+  </efac:LotTender>
+</efac:LotResult>
+```
 
-
-
-
+```json
+{
+  "bids": {
+    "details": [
+      {
+        "id": "TEN-0001",
+        "foreignSubsidyMeasures": "fsr-adm-clos",
+        "relatedLots": [
+          "LOT-0001"
+        ]
+      }
+    ]
+  }
+}
+```
 
 </td>
       </tr>
@@ -20413,11 +20464,11 @@ Lowercase and convert the code into a two-letter [ISO 639-1 code](https://en.wik
         </td>
         <td class="mapping">
 
-If `cbc:CalculationExpressionCode[@listName="usage"]` is not set to "used", discard. Otherwise, these values are mapped to the same `SelectionCriterion` objects as created for BT-40-Lot, BT-747-Lot, BT-749-Lot, BT-752-Lot-ThresholdNumber, BT-752-Lot-WeightNumber, BT-7531-Lot and BT-7532-Lot.
+These values are mapped to the same `SelectionCriterion` objects as created for BT-40-Lot, BT-752-Lot-ThresholdNumber, BT-752-Lot-WeightNumber, BT-7531-Lot, BT-7532-Lot and BT-809-Lot.
 
 - [Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot).
 - For each `efac:SelectionCriteria`, add or update a corresponding `SelectionCriterion` object in the lot's `.selectionCriteria.criteria`.
-- Map to the criterion's `.description`. Concatenate it with <a href="#BT-749-Lot">BT-749-Lot Selection Criteria Name</a>.
+- Map to the criterion's `.description`.
 
 ```xml
 <cac:ProcurementProjectLot>
@@ -20485,7 +20536,7 @@ Discard. If the lot's `.submissionTerms.depositsGuarantees` is not empty, a guar
         </td>
         <td class="mapping">
 
-If `ancestor::efac:SelectionCriteria/cbc:CalculationExpressionCode[@listName="usage"]` is not set to "used", discard. Otherwise, these values are mapped to the same `SelectionCriterion` objects as created for BT-40-Lot, BT-747-Lot, BT-749-Lot, BT-750-Lot, BT-7531-Lot and BT-7532-Lot, and the same `SelectionCriterionNumber` objects as created for BT-7532-Lot.
+These values are mapped to the same `SelectionCriterion` objects as created for BT-40-Lot, BT-750-Lot, BT-7531-Lot, BT-7532-Lot and BT-809-Lot, and the same `SelectionCriterionNumber` objects as created for BT-7532-Lot.
 
 - [Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot).
 - For each `efac:SelectionCriteria`, add or update a corresponding `SelectionCriterion` object in the lot's `.selectionCriteria.criteria`.
@@ -20545,7 +20596,7 @@ If `ancestor::efac:SelectionCriteria/cbc:CalculationExpressionCode[@listName="us
         </td>
         <td class="mapping">
 
-If `ancestor::efac:SelectionCriteria/cbc:CalculationExpressionCode[@listName="usage"]` is not set to "used", discard. Otherwise, these values are mapped to the same `SelectionCriterion` objects as created for BT-40-Lot, BT-747-Lot, BT-749-Lot, BT-750-Lot, BT-7531-Lot and BT-7532-Lot, and the same `SelectionCriterionNumber` objects as created for BT-7531-Lot.
+These values are mapped to the same `SelectionCriterion` objects as created for BT-40-Lot, BT-750-Lot, BT-7531-Lot, BT-7532-Lot and BT-809-Lot, and the same `SelectionCriterionNumber` objects as created for BT-7531-Lot.
 
 - [Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot).
 - For each `efac:SelectionCriteria`, add or update a corresponding `SelectionCriterion` object in the lot's `.selectionCriteria.criteria`.
@@ -20605,7 +20656,7 @@ If `ancestor::efac:SelectionCriteria/cbc:CalculationExpressionCode[@listName="us
         </td>
         <td class="mapping">
 
-If `ancestor::efac:SelectionCriteria/cbc:CalculationExpressionCode[@listName="usage"]` is not set to "used", discard. Otherwise, these values are mapped to the same `SelectionCriterion` objects as created for BT-40-Lot, BT-747-Lot, BT-749-Lot, BT-750-Lot, BT-752-Lot-ThresholdNumber, BT-752-Lot-WeightNumber and BT-7532-Lot, and the same `SelectionCriterionNumber` objects as created for BT-752-Lot-ThresholdNumber, BT-752-Lot-WeightNumber and BT-7532-Lot.
+These values are mapped to the same `SelectionCriterion` objects as created for BT-40-Lot, BT-750-Lot, BT-752-Lot-ThresholdNumber, BT-752-Lot-WeightNumber, BT-7532-Lot and BT-809-Lot, and the same `SelectionCriterionNumber` objects as created for BT-752-Lot-ThresholdNumber, BT-752-Lot-WeightNumber and BT-7532-Lot.
 
 - [Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot).
 - For each `efac:SelectionCriteria`, add or update a corresponding `SelectionCriterion` object in the lot's `.selectionCriteria.criteria`.
@@ -20665,7 +20716,7 @@ If `ancestor::efac:SelectionCriteria/cbc:CalculationExpressionCode[@listName="us
         </td>
         <td class="mapping">
 
-If `ancestor::efac:SelectionCriteria/cbc:CalculationExpressionCode[@listName="usage"]` is not set to "used", discard. Otherwise, these values are mapped to the same `SelectionCriterion` objects as created for BT-40-Lot, BT-747-Lot, BT-749-Lot, BT-750-Lot, BT-752-Lot-ThresholdNumber, BT-752-Lot-WeightNumber and BT-7531-Lot, and the same `SelectionCriterionNumber` objects as created for BT-752-Lot-ThresholdNumber, BT-752-Lot-WeightNumber and BT-7531-Lot.
+These values are mapped to the same `SelectionCriterion` objects as created for BT-40-Lot, BT-750-Lot, BT-752-Lot-ThresholdNumber, BT-752-Lot-WeightNumber, BT-7531-Lot and BT-809-Lot, and the same `SelectionCriterionNumber` objects as created for BT-752-Lot-ThresholdNumber, BT-752-Lot-WeightNumber and BT-7531-Lot.
 
 - [Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot).
 - For each `efac:SelectionCriteria`, add or update a corresponding `SelectionCriterion` object in the lot's `.selectionCriteria.criteria`.
@@ -21869,46 +21920,127 @@ For each `cac:ProcurementAdditionalType` add a corresponding `.sustainability` o
       </tr>
       <tr id="BT-806-Procedure">
         <td class="field break-all">
-            <p><b>BT-806-Procedure</b> <b>*</b> <br>Exclusion Grounds Source</p><p><i>BT-806:</i> Where the exclusions grounds are defined, for example, the procurement documents or in ESPD.</p>
+            <p><b>BT-806-Procedure</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#exclusionGrounds"></a><br>Exclusion Grounds Source</p><p><i>BT-806:</i> Where the exclusions grounds are defined, for example, the procurement documents or in ESPD.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:TenderingTerms/cac:TendererQualificationRequest[cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode/@listName='exclusion-grounds-source']/cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode</span></code>
         </td>
         <td class="mapping">
 
+Add to the `tender.exclusionGrounds.sources` array.
 
+```xml
+<cac:TendererQualificationRequest>
+  <cac:SpecificTendererRequirement>
+    <cbc:TendererRequirementTypeCode listName="exclusion-grounds-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+  </cac:SpecificTendererRequirement>
+</cac:TendererQualificationRequest>
+```
 
-
-
-
+```json
+{
+  "tender": {
+    "exclusionGrounds": {
+      "sources": [
+        "epo-procurement-document"
+      ]
+    }
+  }
+}
+```
 
 </td>
       </tr>
       <tr id="BT-809-Lot">
         <td class="field break-all">
-            <p><b>BT-809-Lot</b> <b>*</b> <br>Selection Criteria</p><p><i>BT-809:</i> The criteria (or criterion).</p>
+            <p><b>BT-809-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria</p><p><i>BT-809:</i> The criteria (or criterion).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:SelectionCriteria/cbc:TendererRequirementTypeCode</span></code>
         </td>
         <td class="mapping">
 
+These values are mapped to the same `SelectionCriterion` objects as created for BT-40, BT-750, BT-752, BT-7531 and BT-7532.
 
+- [Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot).
+- For each `<efac:SelectionCriteria>`, add or update a corresponding `SelectionCriterion` object in the lot's `.selectionCriteria.criteria`.
+- Map to the criterion's `.subType` and set `.type` according to the [selection criterion mapping table](codelists/selection-criterion).
 
+```xml
+<cac:ProcurementProjectLot>
+  <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+  <cac:TenderingTerms>
+    <ext:UBLExtensions>
+      <ext:UBLExtension>
+        <ext:ExtensionContent>
+          <efext:EformsExtension>
+            <efac:SelectionCriteria>
+              <cbc:TendererRequirementTypeCode listName="selection-criterion">slc-suit-reg-prof</cbc:TendererRequirementTypeCode>
+            </efac:SelectionCriteria>
+          </efext:EformsExtension>
+        </ext:ExtensionContent>
+      </ext:UBLExtension>
+    </ext:UBLExtensions>
+  </cac:TenderingTerms>
+</cac:ProcurementProjectLot>
+```
 
-
-
+```json
+{
+  "tender": {
+    "lots": [
+      {
+        "id": "LOT-0001",
+        "selectionCriteria": {
+          "criteria": [
+            {
+              "type": "suitability",
+              "subType": "slc-suit-reg-prof"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
 
 </td>
       </tr>
       <tr id="BT-821-Lot">
         <td class="field break-all">
-            <p><b>BT-821-Lot</b> <b>*</b> <br>Selection Criteria Source</p><p><i>BT-821:</i> Where the selection criteria are defined, for example, the procurement documents or in ESPD.</p>
+            <p><b>BT-821-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria Source</p><p><i>BT-821:</i> Where the selection criteria are defined, for example, the procurement documents or in ESPD.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:TendererQualificationRequest[not(cbc:CompanyLegalFormCode)][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='missing-info-submission'])][not(cac:SpecificTendererRequirement/cbc:TendererRequirementTypeCode[@listName='reserved-procurement'])]/cac:SpecificTendererRequirement[cbc:TendererRequirementTypeCode/@listName='selection-criteria-source']/cbc:TendererRequirementTypeCode</span></code>
         </td>
         <td class="mapping">
 
+[Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot) and add to its `.selectionCriteria.sources` array.
 
+```xml
+<cac:ProcurementProjectLot>
+  <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
+  <cac:TenderingTerms>
+    <cac:TendererQualificationRequest>
+      <cac:SpecificTendererRequirement>
+        <cbc:TendererRequirementTypeCode listName="selection-criteria-source">epo-procurement-document</cbc:TendererRequirementTypeCode>
+      </cac:SpecificTendererRequirement>
+    </cac:TendererQualificationRequest>
+  </cac:TenderingTerms>
+</cac:ProcurementProjectLot>
+```
 
-
-
-
+```json
+{
+  "tender": {
+    "lots": [
+      {
+        "id": "LOT-0001",
+        "selectionCriteria": {
+          "sources": [
+            "epo-procurement-document"
+          ]
+        }
+      }
+    ]
+  }
+}
+```
 
 </td>
       </tr>
