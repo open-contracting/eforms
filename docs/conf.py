@@ -33,6 +33,7 @@ release = "1.0.0-rc.1"
 # ones.
 extensions = [
     "myst_parser",
+    "sphinx.ext.extlinks",
     "sphinxcontrib.jsonschema",
     "sphinxcontrib.opendataservices",
     "sphinx_design",
@@ -60,6 +61,14 @@ html_favicon = "_static/favicon-16x16.ico"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
+
+
+# -- Extension configuration -------------------------------------------------
+
+extlinks = {
+    "issue": ("https://github.com/open-contracting/european-union-support/issues/%s", "#%s"),
+    "pull": ("https://github.com/open-contracting/european-union-support/pull/%s", "#%s"),
+}
 
 
 # -- Local configuration -----------------------------------------------------

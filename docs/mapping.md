@@ -65,11 +65,11 @@ Instructions to follow to map the eForms field to OCDS.
         </td>
         <td class="mapping">
 
-Map to `tender.legalBasis.id`, and set `tender.legalBasis.scheme` to ['ELI'](https://eur-lex.europa.eu/eli-register/about.html).
+If the value of this field starts with "http://data.europa.eu/eli/dir", discard. Otherwise, map to `tender.legalBasis.id`, and set `tender.legalBasis.scheme` to the value of `cbc:ID[@schemeName]`.
 
 ```xml
 <cac:ProcurementLegislationDocumentReference>
-  <cbc:ID schemeName="ELI">http://data.europa.eu/eli/dir/2014/24/oj</cbc:ID>
+  <cbc:ID schemeName="ELI">https://www.legislation.gov.uk/id/uksi/2015/102</cbc:ID>
 </cac:ProcurementLegislationDocumentReference>
 ```
 
@@ -78,7 +78,7 @@ Map to `tender.legalBasis.id`, and set `tender.legalBasis.scheme` to ['ELI'](htt
   "tender": {
     "legalBasis": {
       "scheme": "ELI",
-      "id": "http://data.europa.eu/eli/dir/2014/24/oj"
+      "id": "https://www.legislation.gov.uk/id/uksi/2015/102"
     }
   }
 }
@@ -174,7 +174,7 @@ Map to `tender.legalBasis.description`.
         </td>
         <td class="mapping">
 
-Map to `tender.legalBasis.id`, and set `tender.legalBasis.scheme` to ['CELEX'](https://eur-lex.europa.eu/content/help/eurlex-content/celex-number.html).
+If "other", discard. Otherwise, map to `tender.legalBasis.wasDerivedFrom.id`, and set `tender.legalBasis.wasDerivedFrom.scheme` to ['CELEX'](https://eur-lex.europa.eu/content/help/eurlex-content/celex-number.html).
 
 ```xml
 <cbc:RegulatoryDomain>32014L0024</cbc:RegulatoryDomain>
@@ -184,8 +184,10 @@ Map to `tender.legalBasis.id`, and set `tender.legalBasis.scheme` to ['CELEX'](h
 {
   "tender": {
     "legalBasis": {
-      "scheme": "CELEX",
-      "id": "32014L0024"
+      "wasDerivedFrom": {
+        "scheme": "CELEX",
+        "id": "32014L0024"
+      }
     }
   }
 }
@@ -219,7 +221,9 @@ Discard. Note that the `@listName` attribute of the XML element is mapped in <a 
 
 The values of `cbc:NoticeTypeCode[@listName]` are drawn from the [form type authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/form-type) in the EU Vocabularies.
 
-Look up `cbc:NoticeTypeCode[@listName]` in the [form type mapping table](codelists/form-type), add the values of the release tag column to `tag` and set `tender.status` to the value of the tender status column.
+If the code is "bri", discard the notice. It relates to events outside the lifecycle of a contracting process.
+
+Otherwise, look up `cbc:NoticeTypeCode[@listName]` in the [form type mapping table](codelists/form-type), add the values of the release tag column to `tag` and set `tender.status` to the value of the tender status column.
 
 ```xml
 <cbc:NoticeTypeCode listName="competition">cn-standard</cbc:NoticeTypeCode>
@@ -1123,7 +1127,7 @@ Concatenate with <a href="#BT-125(i)-Part">BT-125(i)-Part Previous Planning Iden
       </tr>
       <tr id="BT-1252-Procedure">
         <td class="field break-all">
-            <p><b>BT-1252-Procedure</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#directAwardSection"></a><br>Direct Award Justification Previous Procedure Identifier</p><p><i>BT-1252:</i> An identifier of a previous procedure that justifies the use of a procedure which allows directly awarding contracts, i.e. justifying a procedure that does not require publishing a call for competition in the Official Journal of the European Union.</p>
+            <p><b>BT-1252-Procedure</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#directAwardSection"></a><br>Direct Award Justification Previous Procedure Identifier</p><p><i>BT-1252:</i> An identifier of a previous procedure that justifies the use of a procedure which allows directly awarding contracts, i.e. justifying a procedure that does not require publishing a call for competition in the Official Journal of the European Union.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:TenderingProcess/cac:ProcessJustification[cbc:ProcessReasonCode/@listName='direct-award-justification']/cbc:Description</span></code>
         </td>
         <td class="mapping">
@@ -1974,7 +1978,7 @@ If not already present, add the value of this field to the lot group's `.related
         <td class="mapping">
 
 [Get the document for the document reference](operations.md#get-the-document-for-a-document-reference).
-Set its `.documentType` to 'biddingDocuments' and set it's `.accessDetails` to "Restricted.".
+Set its `.documentType` to 'biddingDocuments'. Prepend "Restricted." to its `.accessDetails`.
 [Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot), and add its `id` to the document's `.relatedLots`.
 
 ```xml
@@ -2016,7 +2020,7 @@ Set its `.documentType` to 'biddingDocuments' and set it's `.accessDetails` to "
         <td class="mapping">
 
 [Get the document for the document reference](operations.md#get-the-document-for-a-document-reference).
-Set its `.documentType` to 'biddingDocuments', and set it's `.accessDetails` to "Restricted.".
+Set its `.documentType` to 'biddingDocuments'. Prepend "Restricted." to its `.accessDetails`.
 
 ```xml
 <cac:CallForTendersDocumentReference>
@@ -2906,7 +2910,7 @@ Map the value of this field to the award's `.valueCalculationMethod`.
       </tr>
       <tr id="BT-165-Organization-Company">
         <td class="field break-all">
-            <p><b>BT-165-Organization-Company</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Winner Size</p><p><i>BT-165:</i> The size of the winner, tenderer or subcontractor (e.g. micro enterprise, small enterprise, medium enterprise).</p>
+            <p><b>BT-165-Organization-Company</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Winner Size</p><p><i>BT-165:</i> The size of the winner, tenderer or subcontractor (e.g. micro enterprise, small enterprise, medium enterprise).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:Organization/efac:Company/efbc:CompanySizeCode</span></code>
         </td>
         <td class="mapping">
@@ -7275,7 +7279,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-09)-Procedure. Ad
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7309,7 +7313,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-105)-Procedure. A
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7343,7 +7347,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-106)-Procedure. A
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7415,7 +7419,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-1252)-Procedure. 
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7449,7 +7453,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-135)-Procedure. A
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7483,7 +7487,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-1351)-Procedure. 
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7517,7 +7521,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-136)-Procedure. A
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7551,7 +7555,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-142)-LotResult an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7585,7 +7589,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-144)-LotResult an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7657,7 +7661,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-160)-Tender and `
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7710,7 +7714,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-162)-Tender and `
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7744,7 +7748,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-163)-Tender and `
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7778,7 +7782,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-171)-Tender and `
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7812,7 +7816,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-191)-Tender and `
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7846,7 +7850,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-193)-Tender and `
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7880,7 +7884,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-539)-Lot and `anc
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7914,7 +7918,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-539)-LotsGroup an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7948,7 +7952,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-540)-Lot and `anc
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -7982,7 +7986,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-540)-LotsGroup an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8016,7 +8020,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-541)-Lot-Fixed an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8050,7 +8054,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-541)-Lot-Threshol
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8084,7 +8088,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-541)-Lot-Weight a
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8118,7 +8122,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-541)-LotsGroup-Fi
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8152,7 +8156,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-541)-LotsGroup-Th
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8186,7 +8190,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-541)-LotsGroup-We
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8220,7 +8224,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-5421)-Lot and `an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8254,7 +8258,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-5421)-LotsGroup a
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8288,7 +8292,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-5422)-Lot and `an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8322,7 +8326,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-5422)-LotsGroup a
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8356,7 +8360,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-5423)-Lot and `an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8390,7 +8394,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-5423)-LotsGroup a
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8424,7 +8428,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-543)-Lot and `anc
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8458,7 +8462,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-543)-LotsGroup an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8492,7 +8496,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-553)-Tender and `
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8526,7 +8530,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-554)-Tender and `
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8560,7 +8564,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-555)-Tender and `
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8613,7 +8617,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-635)-LotResult an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8647,7 +8651,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-636)-LotResult an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8681,7 +8685,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-660)-LotResult an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8715,7 +8719,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-709)-LotResult an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8749,7 +8753,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-710)-LotResult an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8783,7 +8787,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-711)-LotResult an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8817,7 +8821,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-712)-LotResult an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8851,7 +8855,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-720)-Tender and `
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8923,7 +8927,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-733)-Lot and `anc
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8957,7 +8961,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-733)-LotsGroup an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -8991,7 +8995,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-734)-Lot and `anc
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -9025,7 +9029,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-734)-LotsGroup an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -9059,7 +9063,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-759)-LotResult an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -9093,7 +9097,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-760)-LotResult an
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -9127,7 +9131,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-773)-Tender and `
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -9161,7 +9165,7 @@ Get the `withheldInformationItem` object created for BT-195(BT-88)-Procedure. Ad
     {
       "rationaleClassifications": [
         {
-          "scheme": "non-publication-justification",
+          "scheme": "eu-non-publication-justification",
           "id": "oth-int",
           "description": "Other public interest",
           "uri": "http://publications.europa.eu/resource/authority/non-publication-justification/oth-int"
@@ -12911,7 +12915,7 @@ For each `cac:Prize`, add or update the corresponding `Prize` object in the lot'
       </tr>
       <tr id="BT-500-Organization-TouchPoint">
         <td class="field break-all">
-            <p><b>BT-500-Organization-TouchPoint</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Name</p><p><i>BT-500:</i> The official name of the organisation.</p>
+            <p><b>BT-500-Organization-TouchPoint</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Name</p><p><i>BT-500:</i> The official name of the organisation.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:Organization/efac:TouchPoint/cac:PartyName/cbc:Name</span></code>
         </td>
         <td class="mapping">
@@ -13303,7 +13307,7 @@ For each `cac:Prize`, add or update the corresponding `Prize` object in the lot'
       </tr>
       <tr id="BT-503-Organization-TouchPoint">
         <td class="field break-all">
-            <p><b>BT-503-Organization-TouchPoint</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Contact Telephone Number</p><p><i>BT-503:</i> The telephone number for contacting the organisation. To avoid unnecessary processing of personal data, the telephone number shall allow the identification of a physical person only when necessary (in the sense of the Regulation (EU) 2016/679 and Regulation (EU) 2018/1725).</p>
+            <p><b>BT-503-Organization-TouchPoint</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Contact Telephone Number</p><p><i>BT-503:</i> The telephone number for contacting the organisation. To avoid unnecessary processing of personal data, the telephone number shall allow the identification of a physical person only when necessary (in the sense of the Regulation (EU) 2016/679 and Regulation (EU) 2018/1725).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:Organization/efac:TouchPoint/cac:Contact/cbc:Telephone</span></code>
         </td>
         <td class="mapping">
@@ -13516,7 +13520,7 @@ For each `cac:Prize`, add or update the corresponding `Prize` object in the lot'
       </tr>
       <tr id="BT-506-Organization-TouchPoint">
         <td class="field break-all">
-            <p><b>BT-506-Organization-TouchPoint</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Contact Email Address</p><p><i>BT-506:</i> The email address for contacting the organisation. To avoid unnecessary processing of personal data, the email address shall allow the identification of a physical person only when necessary (in the sense of the Regulation (EU) 2016/679 and Regulation (EU) 2018/1725).</p>
+            <p><b>BT-506-Organization-TouchPoint</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Contact Email Address</p><p><i>BT-506:</i> The email address for contacting the organisation. To avoid unnecessary processing of personal data, the email address shall allow the identification of a physical person only when necessary (in the sense of the Regulation (EU) 2016/679 and Regulation (EU) 2018/1725).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:Organization/efac:TouchPoint/cac:Contact/cbc:ElectronicMail</span></code>
         </td>
         <td class="mapping">
@@ -13694,7 +13698,7 @@ For each `cac:Prize`, add or update the corresponding `Prize` object in the lot'
       </tr>
       <tr id="BT-507-UBO">
         <td class="field break-all">
-            <p><b>BT-507-UBO</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>Country Subdivision</p><p><i>BT-507:</i> The location according to the common classification of territorial units for statistics (NUTS) of the organisation's physical address. The NUTS3 classification code shall be used.</p>
+            <p><b>BT-507-UBO</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>Country Subdivision</p><p><i>BT-507:</i> The location according to the common classification of territorial units for statistics (NUTS) of the organisation's physical address. The NUTS3 classification code shall be used.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:UltimateBeneficialOwner/cac:ResidenceAddress/cbc:CountrySubentityCode</span></code>
         </td>
         <td class="mapping">
@@ -13923,7 +13927,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </tr>
       <tr id="BT-509-Organization-TouchPoint">
         <td class="field break-all">
-            <p><b>BT-509-Organization-TouchPoint</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>eDelivery Gateway</p><p><i>BT-509:</i> The organisation's uniform resource locator for exchange of data and documents.</p>
+            <p><b>BT-509-Organization-TouchPoint</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>eDelivery Gateway</p><p><i>BT-509:</i> The organisation's uniform resource locator for exchange of data and documents.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:Organization/efac:TouchPoint/cbc:EndpointID</span></code>
         </td>
         <td class="mapping">
@@ -14892,7 +14896,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </tr>
       <tr id="BT-512-UBO">
         <td class="field break-all">
-            <p><b>BT-512-UBO</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>Post Code</p><p><i>BT-512:</i> The post code of the organisation's physical address.</p>
+            <p><b>BT-512-UBO</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>Post Code</p><p><i>BT-512:</i> The post code of the organisation's physical address.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:UltimateBeneficialOwner/cac:ResidenceAddress/cbc:PostalZone</span></code>
         </td>
         <td class="mapping">
@@ -15135,7 +15139,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </tr>
       <tr id="BT-513-UBO">
         <td class="field break-all">
-            <p><b>BT-513-UBO</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>City</p><p><i>BT-513:</i> The name of the locality (city, town, or village) of the organisation's physical address.</p>
+            <p><b>BT-513-UBO</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>City</p><p><i>BT-513:</i> The name of the locality (city, town, or village) of the organisation's physical address.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:UltimateBeneficialOwner/cac:ResidenceAddress/cbc:CityName</span></code>
         </td>
         <td class="mapping">
@@ -15332,7 +15336,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </tr>
       <tr id="BT-514-Organization-TouchPoint">
         <td class="field break-all">
-            <p><b>BT-514-Organization-TouchPoint</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Country Code</p><p><i>BT-514:</i> The country of the organisation's physical address.</p>
+            <p><b>BT-514-Organization-TouchPoint</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Country Code</p><p><i>BT-514:</i> The country of the organisation's physical address.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:Organization/efac:TouchPoint/cac:PostalAddress/cac:Country/cbc:IdentificationCode</span></code>
         </td>
         <td class="mapping">
@@ -15382,7 +15386,7 @@ For each `cac:RealizedLocation`, add or update the corresponding `Address` objec
       </tr>
       <tr id="BT-514-UBO">
         <td class="field break-all">
-            <p><b>BT-514-UBO</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>Country Code</p><p><i>BT-514:</i> The country of the organisation's physical address.</p>
+            <p><b>BT-514-UBO</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>Country Code</p><p><i>BT-514:</i> The country of the organisation's physical address.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:UltimateBeneficialOwner/cac:ResidenceAddress/cac:Country/cbc:IdentificationCode</span></code>
         </td>
         <td class="mapping">
@@ -16045,7 +16049,7 @@ For each `cac:SubordinateAwardingCriterion`, add or update a corresponding `Awar
       </tr>
       <tr id="BT-540-LotsGroup">
         <td class="field break-all">
-            <p><b>BT-540-LotsGroup</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#awardCriteriaSection"></a><br>Award Criterion Description</p><p><i>BT-540:</i> The description of the award criterion.</p>
+            <p><b>BT-540-LotsGroup</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#awardCriteriaSection"></a><br>Award Criterion Description</p><p><i>BT-540:</i> The description of the award criterion.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='LotsGroup']/cac:TenderingTerms/cac:AwardingTerms/cac:AwardingCriterion/cac:SubordinateAwardingCriterion/cbc:Description</span></code>
         </td>
         <td class="mapping">
@@ -17846,7 +17850,7 @@ For each `AppealRequestStatistics`, [add a complaints statistic](operations.md#a
 <efac:NoticeResult>
   <efac:LotResult>
     <efac:AppealRequestsStatistics>
-      <efbc:StatisticsCode listName="irregularity-type">unj-lim-subc</efbc:StatisticsCode>
+      <efbc:StatisticsCode listName="irregularity-type">ab-low</efbc:StatisticsCode>
     </efac:AppealRequestsStatistics>
     <efac:TenderLot>
       <cbc:ID schemeName="Lot">LOT-0001</cbc:ID>
@@ -18254,6 +18258,81 @@ Concatenate to the `ExclusionCriteria` object's `.description` using a colon and
 
 </td>
       </tr>
+      <tr id="BT-684-Lot">
+        <td class="field break-all">
+            <p><b>BT-684-Lot</b>  <br>IPI Measures are Applicable</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:StrategicProcurement[efbc:ApplicableLegalBasis/@listName='ipi-scope']/efbc:ApplicableLegalBasis</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-685-LotResult">
+        <td class="field break-all">
+            <p><b>BT-685-LotResult</b> <b>*</b> <br>Specific IPI Measure</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efac:AppliedMeasure/efbc:MeasureCode/@listName='international-procurement-instrument-measure']/efac:StrategicProcurementInformation/efac:AppliedMeasure/efbc:MeasureCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-686-LotResult">
+        <td class="field break-all">
+            <p><b>BT-686-LotResult</b> <b>*</b> <br>Number of tender applications that fall under this IPI Measure</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efac:AppliedMeasure/efbc:MeasureCode/@listName='international-procurement-instrument-measure']/efac:StrategicProcurementInformation/efac:AppliedMeasure/efac:MeasureStatistics/efbc:StatisticsNumeric</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-687-LotResult">
+        <td class="field break-all">
+            <p><b>BT-687-LotResult</b> <b>*</b> <br>Exception to the application of the IPI Measure</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efac:AppliedMeasure/efbc:MeasureCode/@listName='international-procurement-instrument-measure']/efac:StrategicProcurementInformation/efac:AppliedMeasure/efac:MeasureException/efbc:ExceptionCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-688-LotResult">
+        <td class="field break-all">
+            <p><b>BT-688-LotResult</b> <b>*</b> <br>Overriding reasons relating to the public interest</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efac:AppliedMeasure/efbc:MeasureCode/@listName='international-procurement-instrument-measure']/efac:StrategicProcurementInformation/efac:AppliedMeasure/efac:MeasureException/efbc:ExceptionDescription</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
       <tr id="BT-70-Lot">
         <td class="field break-all">
             <p><b>BT-70-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#termsPerformanceSection"></a><br>Terms Performance</p><p><i>BT-70:</i> The main information about the performance of the contract (e.g. intermediary deliverables, compensation for damages, intellectual property rights).</p>
@@ -18353,7 +18432,7 @@ Discard `/*/cac:AdditionalNoticeLanguage/cbc:ID`.
       </tr>
       <tr id="BT-706-UBO">
         <td class="field break-all">
-            <p><b>BT-706-UBO</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>Winner Owner Nationality</p><p><i>BT-706:</i> The nationality (or nationalities) of the beneficiary owner(s) of the winner, tenderer, or subcontractor as published in the register(s) established by European Parliament and Council Directive (EU) 2018/843. If such a register does not exist (e.g. in case of contractors established outside the Union) then equivalent information from other sources.</p>
+            <p><b>BT-706-UBO</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>Winner Owner Nationality</p><p><i>BT-706:</i> The nationality (or nationalities) of the beneficiary owner(s) of the winner, tenderer, or subcontractor as published in the register(s) established by European Parliament and Council Directive (EU) 2018/843. If such a register does not exist (e.g. in case of contractors established outside the Union) then equivalent information from other sources.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:UltimateBeneficialOwner/efac:Nationality/cbc:NationalityID</span></code>
         </td>
         <td class="mapping">
@@ -18406,7 +18485,7 @@ Discard `/*/cac:AdditionalNoticeLanguage/cbc:ID`.
         <td class="mapping">
 
 [Get the document for the document reference](operations.md#get-the-document-for-a-document-reference).
-Look up the code's label in the [authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/communication-justification) and map to the document's `.accessDetails`.
+Look up the code's label in the [authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/communication-justification) and append to the document's `.accessDetails`.
 [Get the lot for the ProcurementProjectLot](operations.md#get-the-lot-for-a-procurementprojectlot), and add its `id` to the document's `.relatedLots`.
 
 ```xml
@@ -18427,7 +18506,7 @@ Look up the code's label in the [authority table](https://op.europa.eu/en/web/eu
     "documents": [
       {
         "id": "20210521/CTFD/ENG/7654-02",
-        "accessDetails": "Restricted. Intellectual property rights issues",
+        "accessDetails": "Intellectual property rights issues",
         "relatedLots": [
           "LOT-0001"
         ]
@@ -18447,7 +18526,7 @@ Look up the code's label in the [authority table](https://op.europa.eu/en/web/eu
         <td class="mapping">
 
 [Get the document for the document reference](operations.md#get-the-document-for-a-document-reference).
-Look up the code's label in the [authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/communication-justification) and map to the document's `.accessDetails`.
+Look up the code's label in the [authority table](https://op.europa.eu/en/web/eu-vocabularies/concept-scheme/-/resource?uri=http://publications.europa.eu/resource/authority/communication-justification) and append to the document's `.accessDetails`.
 
 ```xml
 <cac:CallForTendersDocumentReference>
@@ -18462,7 +18541,7 @@ Look up the code's label in the [authority table](https://op.europa.eu/en/web/eu
     "documents": [
       {
         "id": "20210521/CTFD/ENG/7654-02",
-        "accessDetails": "Restricted. Intellectual property rights issues"
+        "accessDetails": "Intellectual property rights issues"
       }
     ]
   }
@@ -18863,7 +18942,7 @@ For each `ancestor::AppealRequestStatistics`, [add a complaints statistic](opera
       <tr id="BT-717-Lot">
         <td class="field break-all">
             <p><b>BT-717-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#CVDDirectiveLotSection"></a><br>Clean Vehicles Directive</p><p><i>BT-717:</i> The procurement falls within the scope of the European Parliament and Council 2009/33/EC (Clean Vehicles Directive – CVD).</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:StrategicProcurement/efbc:ApplicableLegalBasis</span></code>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:StrategicProcurement[efbc:ApplicableLegalBasis/@listName='cvd-scope']/efbc:ApplicableLegalBasis</span></code>
         </td>
         <td class="mapping">
 
@@ -19152,7 +19231,7 @@ For each `ancestor::efac:Funding`, add or update the corresponding `Finance` obj
       <tr id="BT-723-LotResult">
         <td class="field break-all">
             <p><b>BT-723-LotResult</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Vehicle Category</p><p><i>BT-723:</i> The category of vehicle falling within the scope of Directive 2009/33/EC, including: Light-duty vehicles (M1, M2, N1); Bus (M3); Truck (N2, N3); M1; M2; N1; N2; N3.</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement/efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:AssetCategoryCode</span></code>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efbc:ProcurementCategoryCode/@listName='cvd-contract-type']/efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:AssetCategoryCode</span></code>
         </td>
         <td class="mapping">
 
@@ -19628,7 +19707,7 @@ Discard. If the award's `.subcontracting.minimumPercentage` and `.subcontracting
       </tr>
       <tr id="BT-733-Lot">
         <td class="field break-all">
-            <p><b>BT-733-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#awardCriteriaSection"></a><br>Award Criteria Order Justification</p><p><i>BT-733:</i> The justification for only indicating the award criteria's order of importance, not their weighing.</p>
+            <p><b>BT-733-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#awardCriteriaSection"></a><br>Award Criteria Order Justification</p><p><i>BT-733:</i> The justification for only indicating the award criteria's order of importance, not their weighing.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/cac:AwardingTerms/cac:AwardingCriterion/cbc:Description</span></code>
         </td>
         <td class="mapping">
@@ -19666,7 +19745,7 @@ Discard. If the award's `.subcontracting.minimumPercentage` and `.subcontracting
       </tr>
       <tr id="BT-733-LotsGroup">
         <td class="field break-all">
-            <p><b>BT-733-LotsGroup</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#awardCriteriaSection"></a><br>Award Criteria Order Justification</p><p><i>BT-733:</i> The justification for only indicating the award criteria's order of importance, not their weighing.</p>
+            <p><b>BT-733-LotsGroup</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#awardCriteriaSection"></a><br>Award Criteria Order Justification</p><p><i>BT-733:</i> The justification for only indicating the award criteria's order of importance, not their weighing.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='LotsGroup']/cac:TenderingTerms/cac:AwardingTerms/cac:AwardingCriterion/cbc:Description</span></code>
         </td>
         <td class="mapping">
@@ -19802,7 +19881,7 @@ For each `cac:SubordinateAwardingCriterion`, add or update a corresponding `Awar
       <tr id="BT-735-Lot">
         <td class="field break-all">
             <p><b>BT-735-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#CVDDirectiveLotSection"></a><br>CVD Contract Type</p><p><i>BT-735:</i> The CVD legal basis to establish which category of contract types (purchase, lease, rent, hired-purchase, public service contracts and service contracts according to table 1 CVD) applies.</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:StrategicProcurement/efac:StrategicProcurementInformation/efbc:ProcurementCategoryCode</span></code>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:StrategicProcurement[efbc:ApplicableLegalBasis/@listName='cvd-scope']/efac:StrategicProcurementInformation/efbc:ProcurementCategoryCode</span></code>
         </td>
         <td class="mapping">
 
@@ -19854,7 +19933,7 @@ For each `cac:SubordinateAwardingCriterion`, add or update a corresponding `Awar
       <tr id="BT-735-LotResult">
         <td class="field break-all">
             <p><b>BT-735-LotResult</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#CVDDirectiveLotSection"></a><br>CVD Contract Type</p><p><i>BT-735:</i> The CVD legal basis to establish which category of contract types (purchase, lease, rent, hired-purchase, public service contracts and service contracts according to table 1 CVD) applies.</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement/efac:StrategicProcurementInformation/efbc:ProcurementCategoryCode</span></code>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efbc:ProcurementCategoryCode/@listName='cvd-contract-type']/efac:StrategicProcurementInformation/efbc:ProcurementCategoryCode</span></code>
         </td>
         <td class="mapping">
 
@@ -20139,7 +20218,7 @@ Lowercase and convert the code into a two-letter [ISO 639-1 code](https://en.wik
       </tr>
       <tr id="BT-739-Organization-TouchPoint">
         <td class="field break-all">
-            <p><b>BT-739-Organization-TouchPoint</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Contact Fax</p><p><i>BT-739:</i> The fax number for contacting the organisation. To avoid unnecessary processing of personal data, the fax number shall allow the identification of a physical person only when necessary (in the sense of the Regulation (EU) 2016/679 and Regulation (EU) 2018/1725).</p>
+            <p><b>BT-739-Organization-TouchPoint</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#_general_structure_of_an_organization_related_information"></a><br>Contact Fax</p><p><i>BT-739:</i> The fax number for contacting the organisation. To avoid unnecessary processing of personal data, the fax number shall allow the identification of a physical person only when necessary (in the sense of the Regulation (EU) 2016/679 and Regulation (EU) 2018/1725).</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:Organization/efac:TouchPoint/cac:Contact/cbc:Telefax</span></code>
         </td>
         <td class="mapping">
@@ -21010,7 +21089,9 @@ For each `efac:ReceivedSubmissionsStatistics`, [add a bids statistic](operations
       {
         "id": "1",
         "measure": "smeBids",
-        "relatedLot": "LOT-0001"
+        "relatedLots": [
+          "LOT-0001"
+        ]
       }
     ]
   }
@@ -21308,7 +21389,7 @@ If "true", [get the lot for the ProcurementProjectLot](operations.md#get-the-lot
       </tr>
       <tr id="BT-768-Contract">
         <td class="field break-all">
-            <p><b>BT-768-Contract</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#settledContractSection"></a><br>Contract Framework Agreement</p><p><i>BT-768:</i> The contract is awarded within a framework agreement.</p>
+            <p><b>BT-768-Contract</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#settledContractSection"></a><br>Contract Framework Agreement</p><p><i>BT-768:</i> The contract is awarded within a framework agreement.</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:SettledContract/efbc:ContractFrameworkIndicator</span></code>
         </td>
         <td class="mapping">
@@ -21425,7 +21506,7 @@ Discard. The contract is awarded within a framework agreement if the related lot
     "lots": [
       {
         "id": "LOT-0001",
-        "submissionMethodDetails": "All missing tenderer-related documents can be submitted later."
+        "submissionMethodDetails": "At the discretion of the buyer, all missing tenderer-related documents may be submitted later."
       }
     ]
   }
@@ -21727,6 +21808,111 @@ This field maps to the same `Sustainability` objects as created for BT-06-Lot.
 
 </td>
       </tr>
+      <tr id="BT-783-Review">
+        <td class="field break-all">
+            <p><b>BT-783-Review</b>  <br>Review Request or Decision</p><p><i>BT-783:</i> Whether the information concerns a review request or a review decision.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efbc:AppealStageCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-784-Review">
+        <td class="field break-all">
+            <p><b>BT-784-Review</b> <b>*</b> <br>Review Identifier</p><p><i>BT-784:</i> An identifier of a review request or a review decision. When appealed to a higher review body instance, a review requests must receive a new identifier.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efbc:AppealID</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-785-Review">
+        <td class="field break-all">
+            <p><b>BT-785-Review</b>  <br>Review Previous Identifier</p><p><i>BT-785:</i> An identifier of the review request(s) that led to this decision or a review decision that is being appealed by this review request. Review decision which were initiated by the review body ("ex officio") are not preceded by a review request.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efbc:PreviousAppealID</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-786-Review">
+        <td class="field break-all">
+            <p><b>BT-786-Review</b>  <br>Review Notice Section Identifier</p><p><i>BT-786:</i> An identifier of one or more sections within this notice. The information in the review section refers to this section or these sections.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efac:AppealedItem/cbc:ID</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-787-Review">
+        <td class="field break-all">
+            <p><b>BT-787-Review</b> <b>*</b> <br>Review Date</p><p><i>BT-787:</i> The date and time when the review request was submitted or the review decision was taken.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/cbc:Date</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-788-Review">
+        <td class="field break-all">
+            <p><b>BT-788-Review</b> <b>*</b> <br>Review Title</p><p><i>BT-788:</i> The name of the review request or review decision.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/cbc:Title</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-789-Review">
+        <td class="field break-all">
+            <p><b>BT-789-Review</b> <b>*</b> <br>Review Description</p><p><i>BT-789:</i> The description of the review request or review decision or any other additional information.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/cbc:Description</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
       <tr id="BT-79-Lot">
         <td class="field break-all">
             <p><b>BT-79-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#staffQualificationSection"></a><br>Performing Staff Qualification</p><p><i>BT-79:</i> Whether the names and professional qualifications of the staff assigned to perform the contract must be given.</p>
@@ -21759,6 +21945,156 @@ This field maps to the same `Sustainability` objects as created for BT-06-Lot.
   }
 }
 ```
+
+</td>
+      </tr>
+      <tr id="BT-790-Review">
+        <td class="field break-all">
+            <p><b>BT-790-Review</b> <b>*</b> <br>Review Decision Type</p><p><i>BT-790:</i> The decision type (e.g. accepted, rejected because the complainant did not have legal standing).</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efac:AppealDecision/efbc:DecisionTypeCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-791-Review">
+        <td class="field break-all">
+            <p><b>BT-791-Review</b> <b>*</b> <br>Review Irregularity Type</p><p><i>BT-791:</i> The type of irregularity alleged in the review request or confirmed in the review decision.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efac:AppealIrregularity/efbc:IrregularityTypeCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-792-Review">
+        <td class="field break-all">
+            <p><b>BT-792-Review</b> <b>*</b> <br>Review Remedy Type</p><p><i>BT-792:</i> The remedy (e.g. interim measure, damages) requested in the review request or applied by the review decision.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efac:AppealRemedy/efbc:RemedyTypeCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-793-Review">
+        <td class="field break-all">
+            <p><b>BT-793-Review</b>  <br>Review Remedy Value</p><p><i>BT-793:</i> The value of the remedy (e.g. damages, fines).</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efbc:AppealRemedyValue</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-794-Review">
+        <td class="field break-all">
+            <p><b>BT-794-Review</b>  <br>Review URL</p><p><i>BT-794:</i> The uniform resource locator (e.g. the web address) of the documents concerning the review request or a review decision.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/cbc:URI</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-795-Review">
+        <td class="field break-all">
+            <p><b>BT-795-Review</b>  <br>Review Request Fee</p><p><i>BT-795:</i> The fee paid for lodging the review request.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/cbc:FeeAmount</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-796-Review">
+        <td class="field break-all">
+            <p><b>BT-796-Review</b> <b>*</b> <br>Review Request Withdrawn</p><p><i>BT-796:</i> The review request was withdrawn.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efbc:WithdrawnAppealIndicator</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-797-Review">
+        <td class="field break-all">
+            <p><b>BT-797-Review</b> <b>*</b> <br>Review Request Withdrawn Date</p><p><i>BT-797:</i> The date and time when the request for review was withdrawn.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efbc:WithdrawnAppealDate</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-798-Review">
+        <td class="field break-all">
+            <p><b>BT-798-Review</b>  <br>Review Request Withdrawn Reasons</p><p><i>BT-798:</i> The reasons for withdrawing the request for review.</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efbc:WithdrawnAppealReasons</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-799-ReviewBody">
+        <td class="field break-all">
+            <p><b>BT-799-ReviewBody</b> <b>*</b> <br>Review Body Type</p><p><i>BT-799:</i> The type of review body (e.g. buyer; first instance review body; second instance review body; other, e.g. a civil court setting damages).</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efac:AppealProcessingParty/efbc:AppealProcessingPartyTypeCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
 
 </td>
       </tr>
@@ -21870,6 +22206,21 @@ Discard.
 
 </td>
       </tr>
+      <tr id="BT-804-Review">
+        <td class="field break-all">
+            <p><b>BT-804-Review</b> <b>*</b> <br>Review Technical Identifier</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/cbc:ID</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
       <tr id="BT-805-Lot">
         <td class="field break-all">
             <p><b>BT-805-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#strategicProcurementSection"></a><br>Green Procurement Criteria</p><p><i>BT-805:</i> The procurement procedure includes the use of established green public procurement criteria (selection criteria, technical specifications, award criteria and contract performance clauses), at national, Union or other level, if applicable. </p>
@@ -21949,6 +22300,36 @@ Add to the `tender.exclusionGrounds.sources` array.
 
 </td>
       </tr>
+      <tr id="BT-807-Review">
+        <td class="field break-all">
+            <p><b>BT-807-Review</b>  <br>Review Body Identifier</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efac:AppealProcessingParty/cac:Party/cac:PartyIdentification/cbc:ID</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-808-Review">
+        <td class="field break-all">
+            <p><b>BT-808-Review</b>  <br>Review Applicant Identifier</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Appeals/efac:AppealInformation/efac:AppealingParty/cac:Party/cac:PartyIdentification/cbc:ID</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
       <tr id="BT-809-Lot">
         <td class="field break-all">
             <p><b>BT-809-Lot</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#selectionCriteriaSection"></a><br>Selection Criteria</p><p><i>BT-809:</i> The criteria (or criterion).</p>
@@ -22000,6 +22381,141 @@ These values are mapped to the same `SelectionCriterion` objects as created for 
   }
 }
 ```
+
+</td>
+      </tr>
+      <tr id="BT-810-Lot">
+        <td class="field break-all">
+            <p><b>BT-810-Lot</b>  <br>EED Applicable</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:StrategicProcurement[efbc:ApplicableLegalBasis/@listName='eed-scope']/efbc:ApplicableLegalBasis</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-811(a)-Lot">
+        <td class="field break-all">
+            <p><b>BT-811(a)-Lot</b>  <br>EED List (Basis)</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:StrategicProcurement[efbc:ApplicableLegalBasis/@listName='eed-scope']/efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:LegalFrameworkCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-811(a)-LotResult">
+        <td class="field break-all">
+            <p><b>BT-811(a)-LotResult</b> <b>*</b> <br>EED List (Basis)</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:AssetCategoryCode/@listName='energy-efficiency-item']/efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:LegalFrameworkCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-811(b)-Lot">
+        <td class="field break-all">
+            <p><b>BT-811(b)-Lot</b> <b>*</b> <br>EED List (Item)</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/cac:ProcurementProjectLot[cbc:ID/@schemeName='Lot']/cac:TenderingTerms/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:StrategicProcurement[efbc:ApplicableLegalBasis/@listName='eed-scope']/efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:AssetCategoryCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-811(b)-LotResult">
+        <td class="field break-all">
+            <p><b>BT-811(b)-LotResult</b> <b>*</b> <br>EED List (Item)</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:AssetCategoryCode/@listName='energy-efficiency-item']/efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:AssetCategoryCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-812-LotResult">
+        <td class="field break-all">
+            <p><b>BT-812-LotResult</b> <b>*</b> <br>Energy Efficiency Label</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:AssetCategoryCode/@listName='energy-efficiency-item']/efac:StrategicProcurementInformation/efac:ProcurementDetails/efac:AssetLabel/efbc:LabelCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-813-LotResult">
+        <td class="field break-all">
+            <p><b>BT-813-LotResult</b> <b>*</b> <br>Energy Consumption in kWh/year</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:AssetCategoryCode/@listName='energy-efficiency-item']/efac:StrategicProcurementInformation/efac:ProcurementDetails/efac:AssetMetric[efbc:AssetMetricCode/text()='nrg-con-yr']/efbc:AssetMetricNumeric</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-814-LotResult">
+        <td class="field break-all">
+            <p><b>BT-814-LotResult</b> <b>*</b> <br>Energy Savings in kWh/year</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:AssetCategoryCode/@listName='energy-efficiency-item']/efac:StrategicProcurementInformation/efac:ProcurementDetails/efac:AssetMetric[efbc:AssetMetricCode/text()='nrg-sav-yr']/efbc:AssetMetricNumeric</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="BT-815-LotResult">
+        <td class="field break-all">
+            <p><b>BT-815-LotResult</b> <b>*</b> <br>Energy Efficiency Quantity</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:AssetCategoryCode/@listName='energy-efficiency-item']/efac:StrategicProcurementInformation/efac:ProcurementDetails/efac:StrategicProcurementStatistics/efbc:StatisticsNumeric</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
 
 </td>
       </tr>
@@ -23222,6 +23738,36 @@ For each `cac:ContractExecutionRequirement`, add or update the corresponding `Cu
 
 </td>
       </tr>
+      <tr id="OPT-080-LotResult">
+        <td class="field break-all">
+            <p><b>OPT-080-LotResult</b> <b>*</b> <br>Consumption Metric</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:AssetCategoryCode/@listName='energy-efficiency-item']/efac:StrategicProcurementInformation/efac:ProcurementDetails/efac:AssetMetric[efbc:AssetMetricCode/text()='nrg-con-yr']/efbc:AssetMetricCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
+      <tr id="OPT-081-LotResult">
+        <td class="field break-all">
+            <p><b>OPT-081-LotResult</b> <b>*</b> <br>Savings Metric</p>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efac:ProcurementDetails/efbc:AssetCategoryCode/@listName='energy-efficiency-item']/efac:StrategicProcurementInformation/efac:ProcurementDetails/efac:AssetMetric[efbc:AssetMetricCode/text()='nrg-sav-yr']/efbc:AssetMetricCode</span></code>
+        </td>
+        <td class="mapping">
+
+
+
+
+
+
+
+</td>
+      </tr>
       <tr id="OPT-090-Lot">
         <td class="field break-all">
             <p><b>OPT-090-Lot</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/procedure-lot-part-information.html#frameworkAgreementSection"></a><br>Buyer Categories</p>
@@ -23235,25 +23781,6 @@ Discard
 <cac:SubsequentProcessTenderRequirement>
   <cbc:Name>buyer-categories</cbc:Name>
 </cac:SubsequentProcessTenderRequirement>
-```
-
-
-
-</td>
-      </tr>
-      <tr id="OPT-093-Review">
-        <td class="field break-all">
-            <p><b>OPT-093-Review</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/identifiers.html#identifiersSection"></a><br>Review Technical Identifier</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:AppealsInformation/efac:AppealStatus/cbc:ID</span></code>
-        </td>
-        <td class="mapping">
-
-["This field is currently not used, and is intended for the new "Contract completion" notices that will be added in a future version."](https://github.com/OP-TED/eForms-SDK/releases/tag/1.11.0)
-
-```xml
-<efac:AppealStatus>
-  <cbc:ID>REV-0001</cbc:ID>
-</efac:AppealStatus>
 ```
 
 
@@ -23869,7 +24396,7 @@ Map to the document's `.url`.
       <tr id="OPT-155-LotResult">
         <td class="field break-all">
             <p><b>OPT-155-LotResult</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Vehicle Type</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement/efac:StrategicProcurementInformation/efac:ProcurementDetails/efac:StrategicProcurementStatistics/efbc:StatisticsCode</span></code>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efbc:ProcurementCategoryCode/@listName='cvd-contract-type']/efac:StrategicProcurementInformation/efac:ProcurementDetails/efac:StrategicProcurementStatistics/efbc:StatisticsCode</span></code>
         </td>
         <td class="mapping">
 
@@ -23937,7 +24464,7 @@ For each `efbc:StatisticsCode`, add a `Classification` object to the item's `add
       <tr id="OPT-156-LotResult">
         <td class="field break-all">
             <p><b>OPT-156-LotResult</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/competition-results.html#_lot_result"></a><br>Vehicle Numeric</p>
-            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement/efac:StrategicProcurementInformation/efac:ProcurementDetails/efac:StrategicProcurementStatistics/efbc:StatisticsNumeric</span></code>
+            <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:NoticeResult/efac:LotResult/efac:StrategicProcurement[efac:StrategicProcurementInformation/efbc:ProcurementCategoryCode/@listName='cvd-contract-type']/efac:StrategicProcurementInformation/efac:ProcurementDetails/efac:StrategicProcurementStatistics/efbc:StatisticsNumeric</span></code>
         </td>
         <td class="mapping">
 
@@ -23945,8 +24472,8 @@ This field maps to the same `Item` objects as created for BT-723-LotResult, BT-7
 
 If the value of this field is 0 then discard. Otherwise:
 
-- If the value of the `ancestor::efbc:StrategicProcurementStatistics/efbc:StatisticsCode` is "vehicles-zero-emission" or "vehicles-clean", get the corresponding item and map to it's `.quantity`.
-- If the value of `ancestor::efbc:StrategicProcurementStatistics/efbc:StatisticsCode` is "vehicles", get the value of `efbc:StatisticsNumeric` for each `ancestor::efbc:StrategicProcurementStatistics` with `efbc:StatisticsCode` equal to "vehicles-zero-emission" or "vehicles-clean" and subtract the sum of the values from the value of this field. Get the corresponding item and map the resulting value to it's `.quantity`.
+- If the value of the `ancestor::efbc:StrategicProcurementStatistics/efbc:StatisticsCode` is "vehicles-zero-emission" or "vehicles-clean", get the corresponding item and map to its `.quantity`.
+- If the value of `ancestor::efbc:StrategicProcurementStatistics/efbc:StatisticsCode` is "vehicles", get the value of `efbc:StatisticsNumeric` for each `ancestor::efbc:StrategicProcurementStatistics` with `efbc:StatisticsCode` equal to "vehicles-zero-emission" or "vehicles-clean" and subtract the sum of the values from the value of this field. Get the corresponding item and map the resulting value to its `.quantity`.
 - If the value is 0 discard the item entirely. Otherwise map the the result to the item's `.quantity`.
 
 ```xml
@@ -23992,7 +24519,7 @@ If the value of this field is 0 then discard. Otherwise:
       </tr>
       <tr id="OPT-160-UBO">
         <td class="field break-all">
-            <p><b>OPT-160-UBO</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>First Name</p>
+            <p><b>OPT-160-UBO</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>First Name</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:UltimateBeneficialOwner/cbc:FirstName</span></code>
         </td>
         <td class="mapping">
@@ -24131,7 +24658,7 @@ If there is an `Organization` in `parties` whose `.id` is equal to the value of 
       </tr>
       <tr id="OPT-202-UBO">
         <td class="field break-all">
-            <p><b>OPT-202-UBO</b>  <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>Beneficial Owner Technical Identifier</p>
+            <p><b>OPT-202-UBO</b> <b>*</b> <a class="reference external" href="https://docs.ted.europa.eu/eforms/latest/schema/parties.html#ultimateBeneficialOwnerSection"></a><br>Beneficial Owner Technical Identifier</p>
             <code class="docutils literal notranslate"><span class="pre">/*/ext:UBLExtensions/ext:UBLExtension/ext:ExtensionContent/efext:EformsExtension/efac:Organizations/efac:UltimateBeneficialOwner/cbc:ID</span></code>
         </td>
         <td class="mapping">
