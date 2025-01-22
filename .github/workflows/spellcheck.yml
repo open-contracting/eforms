@@ -4,5 +4,5 @@ jobs:
   lint:
     uses: open-contracting/.github/.github/workflows/spellcheck.yml@main
     with:
-      ignore: fo,sme,tne,zar
+      ignore: abd,fo,sme,tne,zar
       skip: docson,locale,country.csv,currency.csv,language.csv

@@ -9,10 +9,12 @@ Updates for SDK 1.12.0.
 - Add mappings for new codes in codelists
   - `form-type`: 'consultation', 'completion' (:issue:`231` ▸ :pull:`233`)
   - `procurement-procedure-type`: 'exp-int-rail' (:issue:`230` ▸ :pull:`234`)
-- Update mappings:
+- Update mappings for fields:
   - BT-01(c)-Procedure (:issue:`226` ▸ :pull:`228`)
   - BT-01-notice (:issue:`226` ▸ :pull:`228`)
   - BT-03-notice (:issue:`231` ▸ :pull:`233`)
+- Update mappings for codes:
+  - `form-type`: "planning" maps to 'planning', not 'tender'
 
 ## 2024-11-26
 
