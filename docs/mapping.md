@@ -1061,9 +1061,9 @@ Concatenate with <a href="#BT-1251-Part">BT-1251-Part Previous Planning Part Ide
         </td>
         <td class="mapping">
 
-This field maps to the same `Related Process` objects as created for BT-125(i)-Lot.
+This field maps to the same `RelatedProcess` objects as created for <a href="#BT-125(i)-Lot">BT-125(i)-Lot Previous Planning Identifier</a>.
 
-For each `cac:NoticeDocumentReference`, add or update the corresponding `Related Process` object in the `relatedProcesses` array and map to its `relatedLots`.
+For each `cac:NoticeDocumentReference`, add or update the corresponding `RelatedProcess` object in the `relatedProcesses` array and map to its `relatedLots`.
 
 ```xml
 <cac:NoticeDocumentReference>
